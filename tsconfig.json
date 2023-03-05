@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true, // Подсвечивает все места, где не указан тип TS (функции и тд);
+    "module": "esnext",
+    "target": "es5", // Спецификация js, в который код будет компилироватьс по итогу.
+    "jsx": "react-jsx",
+    "allowJs": true, // Обрабатывает не только .ts файлы, но и .js;
+    "moduleResolution": "node",
+    "esModuleInterop": true, // Повзволяет работать с пакетами, использующие common js (пример: require() module.exports) как с обычными пакетами с помощью import.
+    "allowSyntheticDefaultImports": true,  // Позволяет использовать import без звездочки -> то есть сразу импортировать весь класс.
+    // "baseUrl": "."
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }  
+}
+
+
