@@ -5,9 +5,10 @@
 import path from 'path';
 import webpack from 'webpack';
 
-import { buildWebpackConfig } from './config/build/buildWebpackconfig';
+import { buildWebpackConfig } from './config/build/buildWebpackConfig';
+import { BuildPaths, BuildEnv } from './config/build/types/config';
 
-import { BuildEnv, BuildPaths } from './config/build/types/config';
+
 
 export default (env: BuildEnv) => {
   const mode = env.mode  || 'development';
