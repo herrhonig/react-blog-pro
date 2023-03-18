@@ -1,0 +1,23 @@
+.AppLink {
+  color: var(--primary-color);
+}
+
+.primary {
+  color: var(--primary-color);
+  text-decoration: none;
+
+  &:hover {
+    color: #615a48;
+    transition: 380ms ease-out;
+  }
+}
+
+.secondary {
+  color: var(--secondary-color);
+  text-decoration: none;
+
+  &:hover {
+    color: #FFBD07;
+    transition: 380ms ease-out;
+  }
+}

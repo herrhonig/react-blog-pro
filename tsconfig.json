@@ -9,7 +9,10 @@
     "moduleResolution": "node",
     "esModuleInterop": true, // Повзволяет работать с пакетами, использующие common js (пример: require() module.exports) как с обычными пакетами с помощью import.
     "allowSyntheticDefaultImports": true,  // Позволяет использовать import без звездочки -> то есть сразу импортировать весь класс.
-    // "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./src/*"], //  Делаем абсолютные импорты из папки /src (чтобы не было длинные путей импорта с кишками)
+    },
   },
   "ts-node": {
     "compilerOptions": {

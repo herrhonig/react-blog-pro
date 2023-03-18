@@ -4,11 +4,11 @@ import {
   LOCAL_STORAGE_THEME_KEY,
   ThemeContext,
   ThemeType,
-} from './ThemeContext';
+} from 'app/providers/themeProvider/lib/ThemeContext';
 
 const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as ThemeType || 'light';
 
-const ThemeProvider: React.FC = ({ children }) => {
+export const ThemeProvider: React.FC = ({ children }) => {
   const [theme, setTheme] = React.useState<ThemeType>(defaultTheme);
 
   /* Создаем defaultParams чтобы компонента
@@ -27,5 +27,3 @@ const ThemeProvider: React.FC = ({ children }) => {
       </ThemeContext.Provider>
   )
 }
-
-export default ThemeProvider
