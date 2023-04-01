@@ -11,21 +11,21 @@ interface Props {
 }
 
 export const Sidebar: React.FC<Props> = ({ className }) => {
-  const [collapsed, setCollapsed] = React.useState<boolean>(false);
+    const [collapsed, setCollapsed] = React.useState<boolean>(false);
 
-  const onToggle = () => {
-    setCollapsed(prev => !prev); 
-  }
+    const onToggle = () => {
+        setCollapsed((prev) => !prev);
+    };
 
-  return (
-    <div 
-      className={classNames(cls.Sidebar, {[cls.collapsed]: collapsed}, [className])}
-    >
-      <button onClick={onToggle}>toggle</button>
-        <div className={cls.switchers}>
-            <ThemeSwitcher />
-            <LangSwitcher className={cls.lang}/>
+    return (
+        <div
+            className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
+        >
+            <button onClick={onToggle}>toggle</button>
+            <div className={cls.switchers}>
+                <ThemeSwitcher />
+                <LangSwitcher className={cls.lang} />
+            </div>
         </div>
-    </div>
-  );
+    );
 };
