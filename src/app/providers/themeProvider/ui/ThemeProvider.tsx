@@ -3,13 +3,13 @@ import React from 'react';
 import {
   LOCAL_STORAGE_THEME_KEY,
   ThemeContext,
-  ThemeType,
+  Theme,
 } from 'app/providers/themeProvider/lib/ThemeContext';
 
-const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as ThemeType || 'light';
+const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT;
 
 export const ThemeProvider: React.FC = ({ children }) => {
-  const [theme, setTheme] = React.useState<ThemeType>(defaultTheme);
+  const [theme, setTheme] = React.useState<Theme>(defaultTheme);
 
   /* Создаем defaultParams чтобы компонента
     не перерисовывалась каждый раз
