@@ -26,7 +26,7 @@ module.exports = {
     rules: {
         indent: [2, 4],
         'no-shadow': 'off',
-        'max-len': [2, 350],
+        'max-len': [2, 350, { ignoreComments: true }],
         'no-unused-vars': 'warn',
         'no-use-before-define': 'off',
         'no-underscore-dangle': 'off',
