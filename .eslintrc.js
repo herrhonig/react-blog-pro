@@ -33,6 +33,7 @@ module.exports = {
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
         'react/jsx-props-no-spreading': 'warn',
+        'react/react-in-jsx-scope': 'off',
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
         'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
         'react/require-default-props': 'off',
