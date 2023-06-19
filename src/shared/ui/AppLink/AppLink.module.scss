@@ -7,8 +7,8 @@
     text-decoration: none;
 
     &:hover {
-        color: #615a48;
-        transition: 380ms ease-out;
+        color: #a7a7a7;
+        transition: 300ms ease-out;
     }
 }
 
@@ -17,7 +17,16 @@
     text-decoration: none;
 
     &:hover {
-        color: #ffbd07;
-        transition: 380ms ease-out;
+        color: #a87b00;
+        transition: 300ms ease-out;
+    }
+}
+
+.red {
+    color: red;
+
+    &:hover {
+        color: rgb(255 0 0 / 58.5%);
+        transition: 300ms ease-out;
     }
 }
