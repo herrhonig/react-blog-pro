@@ -29,7 +29,7 @@ export const Sidebar: React.FC<Props> = ({ className }) => {
                 data-testid="toggleBtn"
                 onClick={onToggle}
             >
-                {t('Показать')}
+                {t('Переключить')}
             </button>
             <div className={cls.switchers}>
                 <ThemeSwitcher />
