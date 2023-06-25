@@ -1,5 +1,4 @@
 name: lint, test, build checks.
-run-name: ${{ github.actor }} is learning GitHub Actions
 on:
   push:
     branches: [ master ]
@@ -10,21 +9,22 @@ jobs:
     runs-on: [ubuntu-latest, macos-latest]
     strategy:
       matrix:
-      node: [ 16.x ]
-steps:
-  - name: Checkout Commit
-  uses: actions/checkout@v2
-  - name: Use Node.js ${{ matrix.node }}
-  uses: actions/setup-node@v1
-  with:
-  node-version: ${{ matrix.node }}
-  - name: Install node modules
-  run: npm install
-  - name: Build app
-  run: npm run build:prod
-  - name: Lint ts-check
-  run: npm run lint:ts
-  - name: Lint css-check
-  run: npm run lint:scss
-  - name: Unit-test-check
-  run: npm run test:unit
+        node: [ 16.x ]
+
+    steps:
+      - name: Checkout Commit
+      uses: actions/checkout@v2
+      - name: Starting Node.js ${{ matrix.node }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+      - name: Install node modules
+        run: npm install
+      - name: Build app
+        run: npm run build:prod
+      - name: Lint ts-check
+        run: npm run lint:ts
+      - name: Lint css-check
+        run: npm run lint:scss
+      - name: Unit-test-check
+        run: npm run test:unit
