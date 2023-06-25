@@ -5,7 +5,6 @@ import { Button } from 'shared/ui/Button/Button';
 // Компонент для тестирования:
 export const BugButton: React.FC = () => {
     const [error, setError] = React.useState<boolean>(false);
-
     const onToggle = () => setError(true);
 
     React.useEffect(() => {
