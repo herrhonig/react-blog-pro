@@ -1,18 +1,31 @@
-name: learn-github-actions
+name: lint, test, build checks.
 run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
-  check-bats-version:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "CI STARTED ON PUSH"
-      - run: echo "CI CONTINUES...1 ON PUSH"
-      - run: echo "CI CONTINUES.....2 ON PUSH"
-      - run: echo "CI CONTINUES........3 ON PUSH"
-      - run: echo "CI ---END UP----"
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+  pipeline:
+    runs-on: [ubuntu-latest, macos-latest]
+    strategy:
+      matrix:
+      node: [ 16.x ]
+
+- steps:
+    - name: Checkout Commit
+    uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node }}
+    uses: actions/setup-node@v1
+    with:
+    node-version: ${{ matrix.node }}
+    - name: Install node modules
+    run: npm install
+    - name: Build app
+    run: npm run build:prod
+    - name: Lint ts-check
+    run: npm run lint:ts
+    - name: Lint css-check
+    run: npm run lint:scss
+    - name: Unit-test-check
+    run: npm run test:unit
