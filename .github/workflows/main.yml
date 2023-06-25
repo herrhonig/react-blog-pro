@@ -5,6 +5,11 @@ jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "CI STARTED ON PUSH"
+      - run: echo "CI CONTINUES...1 ON PUSH"
+      - run: echo "CI CONTINUES.....2 ON PUSH"
+      - run: echo "CI CONTINUES........3 ON PUSH"
+      - run: echo "CI ---END UP----"
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
