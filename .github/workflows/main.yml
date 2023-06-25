@@ -1,23 +1,23 @@
-name: lint, test, build checks.
+name: lint, test, build checks
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 jobs:
   pipeline:
     runs-on: [ubuntu-latest, macos-latest]
     strategy:
       matrix:
-        node: [ 16.x ]
+        node: [16.x]
 
     steps:
       - name: Checkout Commit
-      uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: Starting Node.js ${{ matrix.node }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
       - name: Install node modules
         run: npm install
       - name: Build app
