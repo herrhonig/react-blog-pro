@@ -1,4 +1,4 @@
-import path from "path/posix";
+import path from 'path/posix';
 
 export default {
     clearMocks: true,
