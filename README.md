@@ -27,6 +27,7 @@
   <li>Storybook</li>
   <li>Loki</li>
   <li>Rtl</li>
+  <li>i18n</li>
   <li>Jest</li>
   <li>Cypress</li>
   <li>Babel</li>
