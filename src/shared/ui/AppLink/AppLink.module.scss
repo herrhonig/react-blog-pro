@@ -3,7 +3,7 @@
 }
 
 .primary {
-    color: var(--primary-color);
+    color: var(--inverted-primary-color);
     text-decoration: none;
 
     &:hover {
@@ -13,7 +13,7 @@
 }
 
 .secondary {
-    color: var(--inverted-primary-color);
+    color: var(--inverted-secondary-color);
     text-decoration: none;
 
     &:hover {
