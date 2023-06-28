@@ -3,6 +3,7 @@ import { Link, LinkProps } from 'react-router-dom';
 
 import { classNames } from 'shared/lib/classNames';
 
+import { log } from 'console';
 import cls from './AppLink.module.scss';
 
 export enum AppLinkTheme {
@@ -22,12 +23,15 @@ export const AppLink: React.FC<Props> = ({
     children,
     className,
     ...otherProps
-}) => (
-    <Link
-        to={to}
-        className={classNames(cls.AppLink, { [cls[theme]]: true }, [className])}
-        {...otherProps}
-    >
-        {children}
-    </Link>
-);
+}) => {
+    console.log('THEME>', theme);
+    return (
+        <Link
+            to={to}
+            className={classNames(cls.AppLink, { [cls[theme]]: true }, [className])}
+            {...otherProps}
+        >
+            {children}
+        </Link>
+    );
+};
