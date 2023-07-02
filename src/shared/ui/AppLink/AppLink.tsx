@@ -25,6 +25,7 @@ export const AppLink: React.FC<Props> = ({
     ...otherProps
 }) => {
     console.log('THEME>', theme);
+
     return (
         <Link
             to={to}
