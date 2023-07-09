@@ -13,7 +13,12 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['react', '@typescript-eslint', 'i18next'],
+    plugins: [
+        'react',
+        '@typescript-eslint',
+        'i18next',
+        'react-hooks',
+    ],
     rules: {
         indent: [2, 4],
         'no-shadow': 'off',
@@ -35,6 +40,8 @@ module.exports = {
         }],
         'react/require-default-props': 'off',
         'react/button-has-type': 'off',
+        'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+        'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
         'import/no-extraneous-dependencies': 'off',
         'import/prefer-default-export': 'off',
         'import/no-unresolved': 'off',
@@ -43,6 +50,8 @@ module.exports = {
             markupOnly: true,
             ignoreAttribute: ['data-testid', 'to'],
         }],
+        'jsx-a11y/no-static-element-interactions': 'off',
+        'jsx-a11y/click-events-have-key-events': 'off',
     },
     globals: {
         __IS_DEV__: true,

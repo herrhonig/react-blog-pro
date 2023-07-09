@@ -16,6 +16,12 @@
     // Sidebar:
     --sidebar-width: 300px;
     --sidebar-width-collapsed: 80px;
+
+    // Z-indexes:
+    --modal-z-index: 10;
+
+    // Overlay:
+    --overlay-color: rgb(0 0 0 / 60%);
 }
 
 /* --font-m: Это объединяющая переменная стилей через var() -> font/size/line */
