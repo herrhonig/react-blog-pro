@@ -8,7 +8,9 @@ interface Props {
     className?: string;
 }
 
-export const NotFoundPage: React.FC<Props> = ({ className }) => {
+export const NotFoundPage: React.FC<Props> = ({
+    className,
+}) => {
     const { t } = useTranslation();
     return (
         <div className={classNames(cls.NotFoundPage, {}, [className])}>
