@@ -11,7 +11,9 @@ interface Props {
     className?: string; // этот класс стилей принимается снаружи чтобы поправить стили вроде отступов или другие доп момменты.
 }
 
-export const Navbar: React.FC<Props> = ({ className }) => {
+export const Navbar: React.FC<Props> = ({
+    className,
+}) => {
     const { t } = useTranslation(); // <- Передаем название namespace "about". По дефолту - "translation"
     const [isAuthModal, setIsAuthModal] = useState<boolean>(false);
 
