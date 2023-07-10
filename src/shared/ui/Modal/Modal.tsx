@@ -1,6 +1,10 @@
 import React, { useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames';
 
+import { useTheme } from 'app/providers/themeProvider';
+
+import { Portal } from '../Portal';
+
 import cls from './Modal.module.scss';
 
 interface Props {
@@ -22,6 +26,7 @@ export const Modal: React.FC<Props> = ({
 }) => {
     const [isClosing, setIsClosing] = React.useState<boolean>(false);
     const timerRef = React.useRef<ReturnType<typeof setTimeout>>();
+    const { theme } = useTheme();
 
     const onClickContent = useCallback((e: React.MouseEvent) => {
         e.stopPropagation();
@@ -57,21 +62,24 @@ export const Modal: React.FC<Props> = ({
     const mods: Mods = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
+        [cls[theme]]: true,
     };
 
     return (
-        <div className={classNames(cls.Modal, mods, [className])}>
-            <div
-                className={cls.overlay}
-                onClick={onCloseHandler}
-            >
+        <Portal>
+            <div className={classNames(cls.Modal, mods, [className])}>
                 <div
-                    className={cls.content}
-                    onClick={onClickContent}
+                    className={cls.overlay}
+                    onClick={onCloseHandler}
                 >
-                    {children}
+                    <div
+                        className={classNames(cls.content, mods, [className])}
+                        onClick={onClickContent}
+                    >
+                        {children}
+                    </div>
                 </div>
             </div>
-        </div>
+        </Portal>
     );
 };

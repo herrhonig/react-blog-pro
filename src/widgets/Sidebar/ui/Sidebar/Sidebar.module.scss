@@ -14,6 +14,7 @@
     position: absolute;
     right: -28px;
     bottom: 32px;
+    color: var(--inverted-secondary-color);
 }
 
 .switchers {
@@ -43,7 +44,7 @@
 }
 
 .icon {
-    fill: var(--secondary-color);
+    fill: var(--inverted-secondary-color);
 }
 
 .collapsed {

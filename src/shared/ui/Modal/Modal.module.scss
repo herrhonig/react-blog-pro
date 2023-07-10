@@ -7,6 +7,11 @@
     z-index: -1;
     opacity: 0;
     pointer-events: none; // Игнорируем события указателя (мышь, стилус, касание пальцем)
+    color: var(--inverted-primary-color);
+}
+
+.Modal.dark {
+    color: var(--inverted-secondary-color);
 }
 
 .overlay {
@@ -25,6 +30,11 @@
     transition: 0.3s transform;
     transform: scale(0.5);
     max-width: 60%;
+}
+
+.content.dark {
+    background: var(--inverted-bg-color);
+    color: var(--inverted-secondary-color);
 }
 
 .opened {

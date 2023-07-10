@@ -4,11 +4,14 @@
 @import "themes/dark";
 
 // Корневой класс стилей:
+body {
+    color: var(--secondary-color);
+    font: var(--font-m); /* Подключаем переменную стилей */
+}
 
 .app {
-    font: var(--font-m); /* Подключаем переменную стилей */
-    background: var(--bg-color);
-    color: var(--secondary-color);
+  background: var(--bg-color);
+
     min-height: 100vh;
 }
 
