@@ -26,6 +26,7 @@ module.exports = {
             ignoreComments: true,
         }],
         'no-unused-vars': 'warn',
+        'no-param-reassign': 'off',
         'no-use-before-define': 'off',
         'no-underscore-dangle': 'off',
         'react/jsx-indent': [2, 4],

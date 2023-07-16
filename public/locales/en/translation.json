@@ -1,13 +1,14 @@
 {
-  "Тестовый пример": "Test example",
-  "Перевод": "Translate",
-  "Язык": "English",
-  "Страница не найдена": "Page not found",
-  "Произошла непредвиденная ошибка": "Unexpected error occured",
-  "Обновить страницу": "Reload page",
+  "Increment": "Increment",
   "Главная": "Main page",
+  "Короткий язык": "EN",
   "О сайте": "About",
-  "Скрыть": "Hide",
+  "Обновить страницу": "Reload page",
+  "Перевод": "Translate",
   "Показать": "Show",
-  "Короткий язык": "EN"
+  "Произошла непредвиденная ошибка": "Unexpected error occured",
+  "Скрыть": "Hide",
+  "Страница не найдена": "Page not found",
+  "Тестовый пример": "Test example",
+  "Язык": "English"
 }
