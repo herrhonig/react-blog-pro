@@ -10,7 +10,7 @@ import { render } from '@testing-library/react';
 
 export interface ComponentRenderOptions {
     route?: string;
-    initialState: DeepPartial<StateSchema> ;
+    initialState?: DeepPartial<StateSchema>;
 }
 
 export function componentRender(component: ReactNode, options: ComponentRenderOptions = {}) {

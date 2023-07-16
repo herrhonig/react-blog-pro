@@ -4,12 +4,12 @@ import { Sidebar } from 'widgets/Sidebar';
 
 describe('Sidebar', () => {
     test('Test render', () => {
-        componentRender(<Sidebar />);
+        componentRender(<Sidebar />, { initialState: {} });
         expect(screen.getByTestId('sidebar')).toBeInTheDocument();
     });
 
     test('Test sidebar toggling', () => {
-        componentRender(<Sidebar />);
+        componentRender(<Sidebar />, { initialState: {} });
 
         const toggleBtn = screen.getByTestId('toggleBtn');
         expect(screen.getByTestId('sidebar')).toBeInTheDocument();
