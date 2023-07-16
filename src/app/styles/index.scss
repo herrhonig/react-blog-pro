@@ -4,8 +4,9 @@
 @import "themes/dark";
 
 // Корневой класс стилей:
+
 body {
-    color: var(--secondary-color);
+    color: var(--inverted-primary-color);
     font: var(--font-m); /* Подключаем переменную стилей */
 }
 

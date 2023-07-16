@@ -3,15 +3,14 @@ import { classNames } from 'shared/lib/classNames';
 
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
-import { useTheme } from './providers/themeProvider';
 
 import { AppRouter } from './providers/router';
 
 export const App = () => {
-    const { theme } = useTheme();
+    console.log('App');
 
     return (
-        <div className={classNames('app', {}, [theme])}>
+        <div className={classNames('app', {}, [])}>
             <Suspense fallback="">
                 <Navbar />
                 <div className="content-page">
@@ -22,4 +21,3 @@ export const App = () => {
         </div>
     );
 };
- 
