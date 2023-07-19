@@ -1,0 +1,22 @@
+.LoginForm {
+    display: flex;
+    flex-direction: column;
+    width: 390px;
+}
+
+// .input {
+//     margin-top: 10px;
+//     border-radius: 6px;
+//     outline: 0;
+//     border: 1.5px solid var(--inverted-primary-color);
+//     padding: 2px 5px;
+// }
+
+// .input:focus {
+//     border: 1.5px solid var(--inverted-secondary-color);
+// }
+
+.loginBtn {
+    margin-top: 10px;
+    margin-left: auto;
+}

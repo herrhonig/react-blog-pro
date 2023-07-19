@@ -1,5 +1,9 @@
 {
   "Increment": "Increment",
+  "Введите имя": "Insert username",
+  "Введите пароль": "Insert password",
+  "Войти":"Sign in",
+  "Зарегистрироваться":"Sign up",
   "Главная": "Main page",
   "Короткий язык": "EN",
   "О сайте": "About",

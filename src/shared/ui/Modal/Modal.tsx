@@ -1,8 +1,6 @@
 import React, { useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames';
 
-import { useTheme } from 'app/providers/themeProvider';
-
 import { Portal } from '../Portal';
 
 import cls from './Modal.module.scss';
@@ -11,6 +9,7 @@ interface Props {
     className?: string;
     children?: React.ReactNode;
     isOpen?: boolean;
+    lazy?: boolean;
     onClose?: () => void;
 }
 
@@ -22,11 +21,17 @@ export const Modal: React.FC<Props> = ({
     className,
     children,
     isOpen,
+    lazy,
     onClose,
 }) => {
-    const [isClosing, setIsClosing] = React.useState<boolean>(false);
     const timerRef = React.useRef<ReturnType<typeof setTimeout>>();
-    const { theme } = useTheme();
+    const [isClosing, setIsClosing] = React.useState<boolean>(false);
+    const [isMounted, setIsMounted] = React.useState<boolean>(false);
+
+    const mods: Mods = {
+        [cls.opened]: isOpen,
+        [cls.isClosing]: isClosing,
+    };
 
     const onClickContent = useCallback((e: React.MouseEvent) => {
         e.stopPropagation();
@@ -50,6 +55,12 @@ export const Modal: React.FC<Props> = ({
 
     React.useEffect(() => {
         if (isOpen) {
+            setIsMounted(true);
+        }
+    }, [isOpen]);
+
+    React.useEffect(() => {
+        if (isOpen) {
             window.addEventListener('keydown', onKeyDown);
         }
 
@@ -59,10 +70,9 @@ export const Modal: React.FC<Props> = ({
         };
     }, [isOpen, onKeyDown]);
 
-    const mods: Mods = {
-        [cls.opened]: isOpen,
-        [cls.isClosing]: isClosing,
-    };
+    if (lazy && !isMounted) {
+        return null;
+    }
 
     return (
         <Portal>
