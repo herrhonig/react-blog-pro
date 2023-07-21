@@ -17,6 +17,7 @@
 <ul>
   <li>React</li>
   <li>React-query</li>
+  <li>Redux-toolkit</li>
   <li>Typescript</li>
   <li>SCSS</li>
   <li>CSS Modules</li>
