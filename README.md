@@ -13,7 +13,17 @@
   </a>
 <br/>
 </p>
-<h4>Запланированные технологии проекта:</h4>
+
+<div>
+  <p> 
+    <b>ENG:</b> Pet-project dedicated to a modern frontend architecture:
+      <a href="https://feature-sliced.design/">
+      FSD (Feature-Sliced Design)
+    </a>
+  </p>
+</div>
+
+<h4>Tech stack:</h4>
 <ul>
   <li>React</li>
   <li>React-query</li>
