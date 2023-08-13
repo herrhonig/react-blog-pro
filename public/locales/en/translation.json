@@ -14,5 +14,8 @@
   "Скрыть": "Hide",
   "Страница не найдена": "Page not found",
   "Тестовый пример": "Test example",
-  "Язык": "English"
+  "Язык": "English",
+  "Выйти": "Logout",
+  "Форма авторизации": "Auth form",
+  "Неверный логин или пароль": "Invalid username or password"
 }

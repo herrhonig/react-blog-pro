@@ -48,7 +48,7 @@ export const Sidebar: React.FC<Props> = ({ className }) => {
             </Button>
             <div className={cls.sidebarLinks}>
                 <AppLink
-                    to={RoutePath.main}
+                    to={RoutePath.MAIN}
                     className={cls.item}
                     theme={AppLinkTheme.SECONDARY}
                 >
@@ -59,7 +59,7 @@ export const Sidebar: React.FC<Props> = ({ className }) => {
                 </AppLink>
 
                 <AppLink
-                    to={RoutePath.about}
+                    to={RoutePath.ABOUT}
                     className={cls.item}
                     theme={AppLinkTheme.SECONDARY}
                 >

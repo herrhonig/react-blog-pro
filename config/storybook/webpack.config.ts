@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import path from 'path';
-import { RuleSetRule } from 'webpack';
+import { DefinePlugin, RuleSetRule } from 'webpack';
 
 import { WebpackConfiguration } from 'webpack-dev-server';
 
@@ -47,6 +47,10 @@ export default ({ config }: { config: WebpackConfiguration }) => {
     // @ts-ignore
 
     config.module.rules.push(buildCssLoader(true));
+
+    config.plugins?.push(new DefinePlugin({
+        __IS_DEV__: true,
+    }));
 
     return config;
 };

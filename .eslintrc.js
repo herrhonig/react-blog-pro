@@ -29,6 +29,7 @@ module.exports = {
         'no-param-reassign': 'off',
         'no-use-before-define': 'off',
         'no-underscore-dangle': 'off',
+        'react/prop-types': 'off',
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
         'react/jsx-props-no-spreading': 'warn',

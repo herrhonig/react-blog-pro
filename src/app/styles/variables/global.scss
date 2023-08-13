@@ -22,6 +22,10 @@
 
     // Overlay:
     --overlay-color: rgb(0 0 0 / 60%);
+
+    // Error:
+    --red-light: #e15a36;
+    --red-dark: #e15a36;
 }
 
 /* --font-m: Это объединяющая переменная стилей через var() -> font/size/line */

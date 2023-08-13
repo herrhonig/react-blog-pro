@@ -1,6 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { UserSchema } from '../types/userSchema';
+import { USER_LOCALSTORAGE_KEY } from 'shared/const';
+
+import { User, UserSchema } from '../types/userSchema';
 
 export interface CounterState {
   value: number
@@ -11,9 +13,24 @@ const initialState: UserSchema = {};
 export const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        setAuthData: (state, action: PayloadAction<User>) => {
+            state.authData = action.payload;
+        },
+        initAuthData: (state, action: PayloadAction<User>) => {
+            const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
+
+            if (user) {
+                state.authData = JSON.parse(user);
+            }
+        },
+        logout: (state) => {
+            console.log('ON LOGOUT');
+            state.authData = undefined;
+            localStorage.removeItem(USER_LOCALSTORAGE_KEY);
+        },
+    },
 });
 
-// Action creators are generated for each case reducer function
 export const { actions: userActions } = userSlice;
 export const { reducer: userReducer } = userSlice;
