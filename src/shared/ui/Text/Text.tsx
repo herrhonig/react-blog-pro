@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { classNames } from 'shared/lib/classNames';
 
 import cls from './Text.module.scss';
@@ -8,8 +8,6 @@ export enum TextTheme {
     ERROR = 'error',
 }
 
-// export type TextTheme = Partial<keyof typeof TextThemeMap>;
-
 interface Props {
     className?: string;
     title?: string;
@@ -18,7 +16,7 @@ interface Props {
     underline?: boolean;
 }
 
-export const Text: React.FC<Props> = ({
+export const Text: React.FC<Props> = memo(({
     className,
     title,
     text,
@@ -35,4 +33,4 @@ export const Text: React.FC<Props> = ({
             {text && <p className={classNames(cls.text, mods)}>{text}</p>}
         </div>
     );
-};
+});

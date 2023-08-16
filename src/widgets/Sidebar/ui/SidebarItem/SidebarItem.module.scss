@@ -1,0 +1,30 @@
+.sidebarLinks {
+    margin-top: 20px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    margin-left: 10px;
+    opacity: 1;
+}
+
+.icon {
+    fill: var(--inverted-secondary-color);
+}
+
+.collapsed {
+    .link {
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+        width: 0;
+        margin-left: 0;
+    }
+}

@@ -8,6 +8,7 @@ import {
 } from '@reduxjs/toolkit';
 
 import { CounterSchema } from 'entities/Counter';
+import { ProfileShema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 
 import { LoginSchema } from 'features/AuthByUsername';
@@ -18,6 +19,7 @@ export interface StateSchema {
     /**
      * @async reducers:
      */
+    profile?: ProfileShema;
     loginForm?: LoginSchema;
 }
 

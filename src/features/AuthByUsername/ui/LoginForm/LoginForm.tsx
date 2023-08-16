@@ -1,9 +1,10 @@
 /* eslint-disable i18next/no-literal-string */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { classNames } from 'shared/lib/classNames';
 
 import { Input } from 'shared/ui/Input/ui/Input';
@@ -24,15 +25,16 @@ import cls from './LoginForm.module.scss';
 
 export interface Props {
     className?: string;
+    onSuccess: () => void;
 }
 
 const initialReducers: ReducersList = {
     loginForm: loginReducer,
 };
 
-const LoginForm: React.FC<Props> = memo(({ className }) => {
+const LoginForm: React.FC<Props> = memo(({ className, onSuccess }) => {
     const { t } = useTranslation();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const username = useSelector(getLoginUsername);
     const password = useSelector(getLoginPassword);
@@ -47,9 +49,12 @@ const LoginForm: React.FC<Props> = memo(({ className }) => {
         dispatch(loginActions.setPassword(value));
     }, [dispatch]);
 
-    const onClickLogin = useCallback(() => {
-        dispatch(loginByUsernameAsync({ username, password }));
-    }, [dispatch, password, username]);
+    const onClickLogin = useCallback(async () => {
+        const result = await dispatch(loginByUsernameAsync({ username, password }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess();
+        }
+    }, [dispatch, onSuccess, password, username]);
 
     return (
         <DynamicModuleLoader

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useCallback, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { getUserAuthData, userActions } from 'entities/User';
@@ -15,7 +15,7 @@ interface Props {
     className?: string;
 }
 
-export const Navbar: React.FC<Props> = ({
+export const Navbar: React.FC<Props> = memo(({
     className,
 }) => {
     const { t } = useTranslation(); // <- Передаем название namespace "about". По дефолту - "translation"
@@ -33,7 +33,6 @@ export const Navbar: React.FC<Props> = ({
     }), []);
 
     const onClickLogout = useCallback((() => {
-        console.log('ON CLICK LOGOUT');
         dispatch(userActions.logout());
     }), [dispatch]);
 
@@ -70,4 +69,4 @@ export const Navbar: React.FC<Props> = ({
             )}
         </div>
     );
-};
+});
