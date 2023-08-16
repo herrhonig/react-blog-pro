@@ -21,11 +21,10 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
         }),
     ];
 
-    plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: false })); // Чтобы не открывался каждый раз после сборки.
-
     if (isDev) {
         plugins.push(new ReactRefreshWebpackPlugin());
         plugins.push(new HotModuleReplacementPlugin());
+        plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: false })); // Чтобы не открывался каждый раз после сборки.
 
         return plugins;
     }

@@ -12,10 +12,6 @@ export type ReducersList = {
 
 type ReducersListEntry = [StateSchemaKey, Reducer]
 
-const list: ReducersList = {
-
-};
-
 interface Props {
     reducers: ReducersList;
     children?: React.ReactNode;
