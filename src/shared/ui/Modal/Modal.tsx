@@ -1,4 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { MutableRefObject, useCallback } from 'react';
+
+import { Mods } from 'shared/lib/classNames/classNames';
 import { classNames } from 'shared/lib/classNames';
 
 import { Portal } from '../Portal';
@@ -13,8 +15,6 @@ interface Props {
     onClose?: () => void;
 }
 
-type Mods = Record<string, boolean>;
-
 const ANIMATION_DELAY: number = 300;
 
 export const Modal: React.FC<Props> = ({
@@ -24,7 +24,7 @@ export const Modal: React.FC<Props> = ({
     lazy,
     onClose,
 }) => {
-    const timerRef = React.useRef<ReturnType<typeof setTimeout>>();
+    const timerRef = React.useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
     const [isClosing, setIsClosing] = React.useState<boolean>(false);
     const [isMounted, setIsMounted] = React.useState<boolean>(false);
 

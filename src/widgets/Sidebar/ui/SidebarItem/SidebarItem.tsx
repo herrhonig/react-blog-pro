@@ -15,12 +15,14 @@ interface Props {
 
 export const SidebarItem: React.FC<Props> = memo(({ item, collapsed }) => {
     const { t } = useTranslation();
+
     return (
         <AppLink
             to={item.path}
             className={classNames(cls.item, { [cls.collapsed]: collapsed })}
             theme={AppLinkTheme.SECONDARY}
         >
+            {/* @ts-ignore */}
             <item.Icon className={cls.icon} />
             <span className={cls.link}>
                 {t(item.text)}

@@ -1,9 +1,11 @@
 import React from 'react';
-import { DeepPartial, ReducersMapObject } from 'redux';
+import { useNavigate } from 'react-router-dom';
+import { ReducersMapObject } from 'redux';
 import { Provider } from 'react-redux';
 
-import { createReduxStore } from '../config/store';
+import { DeepPartial } from 'global/types';
 
+import { createReduxStore } from '../config/store';
 import { StateSchema } from '../config/stateSchema';
 
 interface Props {
@@ -17,9 +19,12 @@ export const StoreProvider: React.FC<Props> = ({
     initialState,
     asyncReducers,
 }) => {
+    const navigate = useNavigate();
+
     const store = createReduxStore(
       initialState as StateSchema,
       asyncReducers as ReducersMapObject<StateSchema>,
+      navigate,
     );
 
     return (

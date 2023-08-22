@@ -33,8 +33,8 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button: React.FC<Props> = memo(({
     className,
     children,
-    theme,
-    square,
+    theme = ButtonTheme.OUTLINE,
+    square = false,
     size = ButtonSize.M,
     disabled = false,
     ...otherProps

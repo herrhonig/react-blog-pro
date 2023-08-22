@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strict": true,
     "outDir": "./dist/",
     "noImplicitAny": true, // Подсвечивает все места, где не указан тип TS (функции и тд);
     "module": "esnext",

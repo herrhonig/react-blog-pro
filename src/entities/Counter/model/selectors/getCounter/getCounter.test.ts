@@ -1,6 +1,6 @@
-import { DeepPartial } from 'redux';
-
 import { StateSchema } from 'app/providers/StoreProvider';
+
+import { DeepPartial } from 'global/types';
 
 import { getCounter } from './getCounter';
 

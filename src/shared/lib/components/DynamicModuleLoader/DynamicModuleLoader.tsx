@@ -10,8 +10,6 @@ export type ReducersList = {
     [name in StateSchemaKey]?: Reducer;
 }
 
-type ReducersListEntry = [StateSchemaKey, Reducer]
-
 interface Props {
     reducers: ReducersList;
     children?: React.ReactNode;
@@ -29,15 +27,15 @@ export const DynamicModuleLoader: React.FC<Props> = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
-            store.reducerManager.add(name, reducer); // Регистрируем async reducer при mount.
+        Object.entries(reducers).forEach(([name, reducer]) => {
+            store.reducerManager.add(name as StateSchemaName, reducer); // Регистрируем async reducer при mount.
             dispatch({ type: `@INIT ${name.toUpperCase()}_ASYNC_REDUCER` });
         });
 
         return () => {
             if (removeAfterUnmount) {
-                Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
-                    store.reducerManager.remove(name); // Удаляем async reducer при unmount.
+                Object.entries(reducers).forEach(([name]) => {
+                    store.reducerManager.remove(name as StateSchemaName); // Удаляем async reducer при unmount.
                     dispatch({ type: `@DESTROY ${name.toUpperCase()}_ASYNC_REDUCER` });
                 });
             }

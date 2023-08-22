@@ -25,6 +25,7 @@ module.exports = {
         'max-len': [2, 350, {
             ignoreComments: true,
         }],
+        'no-undef': 'off',
         'no-unused-vars': 'warn',
         'no-param-reassign': 'off',
         'no-use-before-define': 'off',
@@ -57,6 +58,7 @@ module.exports = {
     },
     globals: {
         __IS_DEV__: true,
+        __API__: true,
     },
     overrides: [{
         files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
