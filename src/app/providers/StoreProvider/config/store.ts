@@ -46,7 +46,6 @@ export function createReduxStore(
     });
 
     // @ts-ignore
-
     store.reducerManager = reducerManager;
 
     return store;
