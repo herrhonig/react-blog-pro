@@ -1,7 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
 import { ThunkConfig } from 'app/providers/StoreProvider';
-
 import { Profile } from '../types/profile';
 
 export const fetchProfileData = createAsyncThunk<Profile, void, ThunkConfig<string>>(
@@ -13,9 +11,7 @@ export const fetchProfileData = createAsyncThunk<Profile, void, ThunkConfig<stri
         } = thunkApi;
 
         try {
-            const response = await extra.api.get<Profile>(
-                'http://localhost:8080/profile',
-            );
+            const response = await extra.api.get<Profile>('/profile');
 
             return response.data;
         } catch (e) {

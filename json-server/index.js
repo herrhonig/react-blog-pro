@@ -1,6 +1,6 @@
 const fs = require('fs');
-const jsonServer = require('json-server');
 const path = require('path');
+const jsonServer = require('json-server');
 // const jwt = require('jsonwebtoken');
 // const cors = require('cors');
 
@@ -20,19 +20,34 @@ server.use(async (req, res, next) => {
 });
 
 server.post('/login', (req, res) => {
-    const { username, password } = req.body;
+    try {
+        const { username, password } = req.body;
 
-    const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
-    const { users } = db;
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        const { users = [] } = db;
 
-    const userFromDB = users.find((user) => user.username === username && user.password === password);
+        const userFromDB = users.find((user) => user.username === username && user.password === password);
 
-    if (!userFromDB) {
-        return res.status(403).json({ message: 'User not found.' });
+        if (!userFromDB) {
+            return res.status(403).json({ message: 'User not found.' });
+        }
+
+        return res.json(userFromDB);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ message: e.message });
     }
-
-    return res.json(userFromDB);
 });
+
+// server.put('/profile', (req, res) => {
+//     try {
+//         const profileData = req.body;
+
+
+//     } catch (e) {
+//         console.log(e);
+//     }
+// });
 
 // Авторизован ли пользак:
 // eslint-disable-next-line consistent-return

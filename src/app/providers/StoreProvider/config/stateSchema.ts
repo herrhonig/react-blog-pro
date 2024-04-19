@@ -11,7 +11,7 @@ import { NavigateOptions, To } from 'react-router-dom';
 import { AxiosInstance } from 'axios';
 
 import { CounterSchema } from 'entities/Counter';
-import { ProfileShema } from 'entities/Profile';
+import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 
 import { LoginSchema } from 'features/AuthByUsername';
@@ -22,7 +22,7 @@ export interface StateSchema {
     /**
      * @async reducers:
      */
-    profile?: ProfileShema;
+    profile?: ProfileSchema;
     loginForm?: LoginSchema;
 }
 
@@ -50,4 +50,5 @@ export interface ThunkExtraArg {
 export interface ThunkConfig<T> {
     rejectValue: T;
     extra: ThunkExtraArg;
+    state: StateSchema;
 }

@@ -1,12 +1,32 @@
 {
   "posts": [
-    { "id": "1", "title": "json-server", "userId": "1" },
-    { "id": "2", "title": "json-server", "userId": "2" },
-    { "id": "3", "title": "json-server", "userId": "3" }
+    {
+      "id": "1",
+      "title": "json-server",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "title": "json-server",
+      "userId": "2"
+    },
+    {
+      "id": "3",
+      "title": "json-server",
+      "userId": "3"
+    }
   ],
   "comments": [
-    { "id": "1", "body": "some comment", "postId": 1 },
-    { "id": "2", "body": "some comment_2", "postId": 2 }
+    {
+      "id": "1",
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "id": "2",
+      "body": "some comment_2",
+      "postId": 2
+    }
   ],
   "users": [
     {
@@ -16,14 +36,13 @@
     }
   ],
   "profile": {
-     "first": "Nick",
-     "lastname": "_B",
-     "age": 27,
-     "currency": "USD",
-     "country": "Thailand",
-     "city": "Old Town",
-     "username": "logell",
-     "avatar": "https://co.design/conversations/content/images/2020/03/Sprint-logo-design-Codesign-agency.png"
+    "first": "Nicky",
+    "lastname": "_B",
+    "age": 27,
+    "currency": "EUR",
+    "country": "Germany",
+    "city": "Old Town city",
+    "username": "logell",
+    "avatar": "https://e7.pngegg.com/pngimages/190/445/png-clipart-def-con-hackers-on-planet-earth-security-hacker-sticker-hacker-emblem-hack-emblem-text.png"
   }
 }
-

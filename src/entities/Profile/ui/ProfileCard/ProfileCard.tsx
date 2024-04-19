@@ -1,48 +1,147 @@
+/* eslint-disable i18next/no-literal-string */
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 
 import { classNames } from 'shared/lib/classNames';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/ui/Input';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { Loader } from 'shared/ui/Loader/ui/Loader';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { Mods } from 'shared/lib/classNames/classNames';
 
-import { getProfileData } from 'entities/Profile/model/selectors/getProfileData/getProfileData';
-import { getProfileLoading } from 'entities/Profile/model/selectors/getProfileLoading/getProfileLoading';
-import { getProfileError } from 'entities/Profile/model/selectors/getProfileError/getProfileError';
+import { Currency as CurrencyEnum } from 'entities/Currency';
+import { CurrencySelect } from 'entities/Currency/ui/CurrencySelect/CurrencySelect';
+
+import { Country as CountryEnum, CountrySelect } from 'entities/Country';
+import { Profile } from '../../model/types/profile';
 
 import cls from './ProfileCard.module.scss';
 
 interface Props {
-    className?: string;
+    className: string;
+    data: Profile;
+    error: string;
+    isLoading: boolean;
+    readonly: boolean;
+    onChangeFirstname: (value?: string) => void;
+    onChangeLastname: (value?: string) => void;
+    onChangeAge: (age?: string) => void;
+    onChangeCity: (city?: string) => void;
+    onChangeUsername: (value?: string) => void;
+    onChangeAvatar: (value?: string) => void;
+    onChangeCurrency: (currency: CurrencyEnum) => void;
+    onChangeCountry: (country: CountryEnum) => void;
 }
 
-export const ProfileCard: React.FC<Props> = memo(({ className }) => {
+type IProps = Partial<Props>;
+
+export const ProfileCard: React.FC<IProps> = memo(({
+    className = '',
+    data,
+    error = '',
+    isLoading = false,
+    readonly = false,
+    onChangeFirstname,
+    onChangeLastname,
+    onChangeAge,
+    onChangeCity,
+    onChangeUsername,
+    onChangeAvatar,
+    onChangeCurrency,
+    onChangeCountry,
+}) => {
     const { t } = useTranslation('profile');
 
-    const data = useSelector(getProfileData);
-    const error = useSelector(getProfileError);
-    const isLoading = useSelector(getProfileLoading);
+    if (isLoading) {
+        return (
+            <div className={classNames(cls.ProfileCard, {}, [className, cls.loading])}>
+                <Loader />
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
+                <Text
+                    theme={TextTheme.ERROR}
+                    align={TextAlign.CENTER}
+                    // eslint-disable-next-line i18next/no-literal-string
+                    title="Ошибка при загрузке профиля"
+                    // eslint-disable-next-line i18next/no-literal-string
+                    text="Попробуйте обновить страницу"
+                />
+            </div>
+        );
+    }
+
+    const mods: Mods = {
+        [cls.editing]: !readonly,
+    };
 
     return (
-        <div className={classNames(cls.ProfileCard, {}, [className])}>
-            <div className={cls.header}>
-                <Text title={t('Профиль')} />
-                <Button theme={ButtonTheme.OUTLINE}>
-                    {t('Редактировать')}
-                </Button>
-            </div>
-
+        <div className={classNames(cls.ProfileCard, mods, [className])}>
             <div className={cls.data}>
+                <div className={cls.avatarWrapper}>
+                    {/*  eslint-disable-next-line i18next/no-literal-string */}
+                    {data?.avatar && <Avatar src={data?.avatar} alt="аватар пользователя" size={150} />}
+                </div>
                 <Input
                     value={data?.first}
-                    placeholder={t('Ваше имя')}
+                    placeholder={t('Имя')}
                     className={cls.input}
+                    readonly={readonly}
+                    onChange={onChangeFirstname}
                 />
                 <Input
                     value={data?.lastname}
-                    placeholder={t('Ваша фамилия')}
+                    placeholder={t('Фамилия')}
                     className={cls.input}
+                    readonly={readonly}
+                    onChange={onChangeLastname}
+                />
+                <Input
+                    value={data?.age}
+                    placeholder={t('Возраст')}
+                    className={cls.input}
+                    readonly={readonly}
+                    onChange={onChangeAge}
+                    maxLength={2}
+                />
+                <Input
+                    value={data?.city}
+                    placeholder={t('Город')}
+                    className={cls.input}
+                    readonly={readonly}
+                    onChange={onChangeCity}
+                />
+                <Input
+                    value={data?.username}
+                    placeholder={t('Введите имя пользователя')}
+                    className={cls.input}
+                    readonly={readonly}
+                    onChange={onChangeUsername}
+                />
+                <Input
+                    value={data?.avatar}
+                    placeholder={t('Добавьте ссылку на аватар')}
+                    className={cls.input}
+                    readonly={readonly}
+                    onChange={onChangeAvatar}
+                />
+
+                <CurrencySelect
+                    className={cls.input}
+                    selectedValue={data?.currency}
+                    onChange={onChangeCurrency}
+                    readonly={readonly}
+                />
+
+                <CountrySelect
+                    className={cls.input}
+                    selectedValue={data?.country}
+                    onChange={onChangeCountry}
+                    readonly={readonly}
                 />
             </div>
         </div>

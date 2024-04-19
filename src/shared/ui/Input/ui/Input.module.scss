@@ -1,6 +1,5 @@
 .InputWrapper {
     display: flex;
-    margin-top: 10px;
 }
 
 .placeholder {
@@ -33,6 +32,11 @@
     left: 0;
     position: absolute;
     animation: blink 0.7s forwards infinite;
+}
+
+.readonly {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 @keyframes blink {
