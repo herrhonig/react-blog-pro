@@ -2,6 +2,7 @@ import axios, { AxiosStatic } from 'axios';
 import { AsyncThunkAction } from '@reduxjs/toolkit';
 
 import { StateSchema } from 'app/providers/StoreProvider';
+import { DeepPartial } from 'global/types';
 
 type ActionCreatorType<Return, Arg, RejectedValue> = (arg: Arg) => AsyncThunkAction<Return, Arg, {rejectValue: RejectedValue }>;
 
@@ -20,9 +21,12 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
 
     navigate: jest.MockedFn<any>;
 
-    constructor(actionCreator: ActionCreatorType<Return, Arg, RejectedValue>) {
+    constructor(
+        actionCreator: ActionCreatorType<Return, Arg, RejectedValue>,
+        state?: DeepPartial<StateSchema>,
+    ) {
         this.dispatch = jest.fn(); // Для вызова теста санки объявляем jest-мок dispatch();
-        this.getState = jest.fn(); // Для вызова теста санки объявляем jest-мок getState();
+        this.getState = jest.fn(() => state as StateSchema); // Для вызова теста санки объявляем jest-мок getState();
         this.actionCreator = actionCreator; // Сам actionCreator с типом ActionCreatorType;
 
         this.api = mockedAxios; // Замоканный аксиос;

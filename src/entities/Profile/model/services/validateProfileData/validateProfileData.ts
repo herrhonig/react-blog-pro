@@ -6,7 +6,7 @@
 
 import { Profile, ValidateProfileError } from '../../types/profile';
 
-type ValidateProfileParams = Profile;
+type ValidateProfileParams = Profile | undefined;
 type ValidateProfileResult = ValidateProfileError[];
 
 interface ValidateProfile {
