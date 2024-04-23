@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { classNames } from 'shared/lib/classNames';
 
 import {
@@ -25,6 +25,14 @@ export const Sidebar: React.FC<Props> = memo(({ className }) => {
         setCollapsed((prev) => !prev);
     };
 
+    const itemsList = useMemo(() => SidebarItemList.map((item) => (
+        <SidebarItem
+            item={item}
+            collapsed={collapsed}
+            key={item.path}
+        />
+    )), [collapsed]);
+
     return (
         <div
             data-testid="sidebar"
@@ -42,13 +50,7 @@ export const Sidebar: React.FC<Props> = memo(({ className }) => {
             </Button>
 
             <div className={cls.sidebarLinks}>
-                {SidebarItemList.map((item) => (
-                    <SidebarItem
-                        key={item.path}
-                        item={item}
-                        collapsed={collapsed}
-                    />
-                ))}
+                {itemsList}
             </div>
 
             <div className={cls.switchers}>
