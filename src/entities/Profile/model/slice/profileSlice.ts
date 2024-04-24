@@ -14,6 +14,7 @@ const initialState: ProfileSchema = {
     form: undefined,
     isLoading: false,
     error: undefined,
+    validateErrors: undefined,
 };
 
 export const profileSlice = createSlice({
