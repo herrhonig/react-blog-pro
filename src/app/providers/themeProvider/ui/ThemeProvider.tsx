@@ -3,8 +3,9 @@ import React from 'react';
 import {
     LOCAL_STORAGE_THEME_KEY,
     ThemeContext,
-    Theme,
+
 } from 'app/providers/themeProvider/lib/ThemeContext';
+import { Theme } from '../lib/theme.schema';
 
 const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT;
 
