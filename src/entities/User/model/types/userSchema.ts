@@ -5,4 +5,5 @@ export interface User {
 
 export interface UserSchema {
     authData?: User;
+    isInited?: boolean; // флаг для отслеживания подгрузки пользоателя. см. компонент App
 }
