@@ -5,6 +5,7 @@ import { classNames } from 'shared/lib/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
 import {
     getArticleDetailsData,
@@ -28,7 +29,8 @@ export const ArticleDetails: React.FC<Props> = memo(({ className, articleId }) =
 
     const dispatch = useAppDispatch();
 
-    const isLoading = useSelector(getArticleDetailsIsLoading);
+    // const isLoading = useSelector(getArticleDetailsIsLoading);
+    const isLoading = true;
     const error = useSelector(getArticleDetailsError);
     const data = useSelector(getArticleDetailsData);
 
@@ -40,7 +42,13 @@ export const ArticleDetails: React.FC<Props> = memo(({ className, articleId }) =
 
     if (isLoading) {
         content = (
-            <div>Loading...</div>
+            <div>
+                <Skeleton className={cls.avatar} width={200} height={200} border="50%" />
+                <Skeleton className={cls.title} width={300} height={32} />
+                <Skeleton className={cls.skeleton} width="100%" height={200} />
+                <Skeleton className={cls.skeleton} width="100%" height={200} />
+                <Skeleton className={cls.skeleton} width="100%" height={200} />
+            </div>
         );
     } else if (error) {
         content = (
