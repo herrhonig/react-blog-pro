@@ -1,7 +1,9 @@
 import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 
-import { useTranslation } from 'react-i18next';
+import { ArticleDetails } from 'entities/Article';
+
 import cls from './ArticleDetailsPage.module.scss';
 
 interface Props {
@@ -14,6 +16,7 @@ const ArticleDetailsPage: React.FC<Props> = ({ className }) => {
     return (
         <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
             {t('О статье')}
+            <ArticleDetails />
         </div>
     );
 };
