@@ -1,3 +1,4 @@
+/* stylelint-disable color-function-notation */
 :root {
     --bg-color: #fff;
     --inverted-bg-color: #232323;
@@ -5,4 +6,8 @@
     --secondary-color: #ffbd07;
     --inverted-primary-color: #ffbd07;
     --inverted-secondary-color: #fff;
+
+    // skeleton
+    --skeleton-color: #d1b977;
+    --skeleton-shadow: rgb(131, 123, 103);
 }
