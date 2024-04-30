@@ -3,10 +3,16 @@
     padding: 20px;
     position: relative;
     background: var(--code-bg-color);
+    overflow: auto;
 }
 
 .copyBtn {
     position: absolute;
     right: 20px;
     top: 20px;
+}
+
+.copyIcon path {
+    fill: var(--inverted-secondary-color);
+    stroke: var(--secondary-color);
 }

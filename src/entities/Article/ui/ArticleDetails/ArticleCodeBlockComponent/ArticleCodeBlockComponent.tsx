@@ -12,7 +12,7 @@ interface Props {
 
 export const ArticleCodeBlockComponent: React.FC<Props> = memo(({ className, block }) => (
     <div className={classNames(cls.ArticleImageBlockComponent, {}, [className])}>
-        <Code>
+        <Code textCode={block.code}>
             {block.code}
         </Code>
     </div>
