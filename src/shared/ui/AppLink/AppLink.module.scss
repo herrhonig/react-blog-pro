@@ -7,8 +7,8 @@
     text-decoration: none;
 
     &:hover {
-        color: #a7a7a7;
-        transition: 300ms ease-out;
+        opacity: 0.6;
+        transition: opacity 250ms ease-out;
     }
 }
 
@@ -17,9 +17,9 @@
     text-decoration: none;
 
     &:hover {
-        color: #a87b00;
         text-decoration: underline;
-        transition: 250ms ease-out;
+        opacity: 0.6;
+        transition: opacity 250ms ease-out;
     }
 }
 
@@ -28,6 +28,6 @@
 
     &:hover {
         color: rgb(255 0 0 / 58.5%);
-        transition: 300ms ease-out;
+        transition: 250ms ease-out;
     }
 }
