@@ -14,6 +14,11 @@ export enum TextAlign {
     CENTER = 'center',
 }
 
+export enum TextSize {
+    M = 'size_m',
+    L = 'size_l',
+}
+
 interface Props {
     className?: string;
     title?: string;
@@ -21,6 +26,7 @@ interface Props {
     theme?: TextTheme,
     underline?: boolean;
     align?: TextAlign;
+    size?: TextSize
 }
 
 export const Text: React.FC<Props> = memo(({
@@ -30,11 +36,13 @@ export const Text: React.FC<Props> = memo(({
     underline = false,
     theme = TextTheme.PRIMARY,
     align = TextAlign.LEFT,
+    size = TextSize.M,
 }) => {
     const mods: Record<string, boolean> = {
         [cls.underline]: underline,
         [cls[theme]]: true,
         [cls[align]]: true,
+        [cls[size]]: true,
     };
 
     return (

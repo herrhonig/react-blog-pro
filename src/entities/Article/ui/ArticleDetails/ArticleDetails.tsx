@@ -4,8 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import EyeIcon from 'shared/assets/icons/eye.svg';
+import CalendarIcon from 'shared/assets/icons/calendar.svg';
+import { Icon } from 'shared/ui/Icon/Icon';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
 import {
     getArticleDetailsData,
@@ -29,8 +33,7 @@ export const ArticleDetails: React.FC<Props> = memo(({ className, articleId }) =
 
     const dispatch = useAppDispatch();
 
-    // const isLoading = useSelector(getArticleDetailsIsLoading);
-    const isLoading = true;
+    const isLoading = useSelector(getArticleDetailsIsLoading);
     const error = useSelector(getArticleDetailsError);
     const data = useSelector(getArticleDetailsData);
 
@@ -42,13 +45,13 @@ export const ArticleDetails: React.FC<Props> = memo(({ className, articleId }) =
 
     if (isLoading) {
         content = (
-            <div>
+            <>
                 <Skeleton className={cls.avatar} width={200} height={200} border="50%" />
                 <Skeleton className={cls.title} width={300} height={32} />
                 <Skeleton className={cls.skeleton} width="100%" height={200} />
                 <Skeleton className={cls.skeleton} width="100%" height={200} />
                 <Skeleton className={cls.skeleton} width="100%" height={200} />
-            </div>
+            </>
         );
     } else if (error) {
         content = (
@@ -60,7 +63,33 @@ export const ArticleDetails: React.FC<Props> = memo(({ className, articleId }) =
         );
     } else {
         content = (
-            <div>ArticleDetails:</div>
+            <>
+                <div className={cls.avatarWrapper}>
+                    <Avatar
+                        size={200}
+                        src={data?.img}
+                        className={cls.avatar}
+                    />
+                </div>
+                <Text
+                    className={cls.title}
+                    title={data?.title}
+                    text={data?.subtitle}
+                    size={TextSize.L}
+                />
+                <div className={cls.articleInfo}>
+                    <Icon SvgComponent={EyeIcon} />
+                    <Text
+                        text={String(data?.views)}
+                    />
+                </div>
+                <div className={cls.articleInfo}>
+                    <Icon SvgComponent={CalendarIcon} />
+                    <Text
+                        text={data?.createdAt}
+                    />
+                </div>
+            </>
         );
     }
 

@@ -6,7 +6,7 @@ import {
 import { Theme } from 'app/providers/themeProvider';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { Text, TextTheme } from './Text';
+import { Text, TextSize, TextTheme } from './Text';
 
 export default {
     title: 'shared/Text',
@@ -61,3 +61,10 @@ OnlyTextDark.args = {
     underline: true,
 };
 OnlyTextDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const SizeL = Template.bind({});
+SizeL.args = {
+    title: 'Text title lorem',
+    text: 'Text text lorem lorem -2 lorem lorem lorem -2',
+    size: TextSize.L,
+};
