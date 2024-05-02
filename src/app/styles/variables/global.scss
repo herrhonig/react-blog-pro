@@ -1,4 +1,5 @@
 :root {
+    // font system:
     --font-family-main: monospace, sans-serif;
     --font-size-m: 16px;
     --font-line-m: 24px;
@@ -9,6 +10,11 @@
     --font-size-xl: 32px;
     --font-line-xl: 40px;
     --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+
+    // margins:
+    --mb-s: 12px;
+    --mb-m: 16px;
+    --mb-l: 20px;
 
     // Navbar:
     --navbar-height: 50px;
@@ -26,6 +32,10 @@
     // Error:
     --red-light: #e15a36;
     --red-dark: #e15a36;
+
+    // Border:
+    --base-border-radius: 8px;
+    --round-border-radius: 50%;
 }
 
 /* --font-m: Это объединяющая переменная стилей через var() -> font/size/line */

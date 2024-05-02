@@ -1,10 +1,11 @@
 import React, { memo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames';
-
-import { ArticleDetails } from 'entities/Article';
-
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
+import { classNames } from 'shared/lib/classNames';
+import { Text, TextSize } from 'shared/ui/Text/Text';
+import { ArticleDetails } from 'entities/Article';
+import { CommentList } from 'entities/Comment';
 import cls from './ArticleDetailsPage.module.scss';
 
 interface Props {
@@ -27,6 +28,15 @@ const ArticleDetailsPage: React.FC<Props> = ({ className }) => {
     return (
         <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
             <ArticleDetails articleId={articleId} />
+            <Text
+                className={cls.commentTitle}
+                size={TextSize.L}
+                text={t('Комментарии')}
+            />
+            <CommentList
+                comments={[]}
+                isLoading={false}
+            />
         </div>
     );
 };

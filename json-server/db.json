@@ -115,19 +115,19 @@
     {
       "id": "1",
       "body": "some comment",
-      "articleId": 1,
+      "articleId": "1",
       "userId": "1"
     },
     {
       "id": "2",
       "body": "some comment_2",
-      "articleId": 2,
+      "articleId": "2",
       "userId": "1"
     },
     {
       "id": "3",
       "body": "some comment_3 some comment_3",
-      "articleId": 2,
+      "articleId": "2",
       "userId": "2"
     }
   ],
@@ -136,13 +136,15 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "role": "ADMIN"
+      "role": "ADMIN",
+      "avatar": "https://e7.pngegg.com/pngimages/190/445/png-clipart-def-con-hackers-on-planet-earth-security-hacker-sticker-hacker-emblem-hack-emblem-text.png"
     },
     {
       "id": "2",
       "username": "user",
       "password": "123",
-      "role": "USER"
+      "role": "USER",
+      "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Hacker_Inside_Logo_%28based_on_Intel_2002-2005_logo%29.svg/850px-Hacker_Inside_Logo_%28based_on_Intel_2002-2005_logo%29.svg.png"
     }
   ],
   "profile": {
