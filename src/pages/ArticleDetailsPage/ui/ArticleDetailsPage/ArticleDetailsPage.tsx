@@ -5,7 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { ArticleDetails } from 'entities/Article';
-import { CommentList } from 'entities/Comment';
+
+import { GetCommentList } from 'features/LoadCommentList/ui/GetCommentList/GetCommentList';
 import cls from './ArticleDetailsPage.module.scss';
 
 interface Props {
@@ -33,7 +34,7 @@ const ArticleDetailsPage: React.FC<Props> = ({ className }) => {
                 size={TextSize.L}
                 text={t('Комментарии')}
             />
-            <CommentList
+            <GetCommentList
                 comments={[]}
                 isLoading={false}
             />

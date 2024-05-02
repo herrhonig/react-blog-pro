@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
 import { classNames } from 'shared/lib/classNames';
-
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Text } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
-import { Comment } from '../../model/types/comment';
+import { Comment } from 'entities/Comment';
+
 import cls from './CommentCard.module.scss';
 
 interface Props {

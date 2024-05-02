@@ -16,6 +16,7 @@ import { UserSchema } from 'entities/User';
 
 import { LoginSchema } from 'features/AuthByUsername';
 import { ArticleDetailsSchema } from 'entities/Article';
+import { CommentListSchema } from 'features/LoadCommentList';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -26,6 +27,7 @@ export interface StateSchema {
     profile?: ProfileSchema;
     loginForm?: LoginSchema;
     articleDetails?: ArticleDetailsSchema;
+    articleDetailsComments?: CommentListSchema;
 }
 
 export interface ReducerManager {
