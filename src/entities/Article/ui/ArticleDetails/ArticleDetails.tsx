@@ -1,7 +1,6 @@
 import React, { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
@@ -42,17 +41,33 @@ export const ArticleDetails: React.FC<Props> = memo(({ className, articleId }) =
     const data = useSelector(getArticleDetailsData);
 
     const renderBlock = useCallback((block: ArticleBlock) => {
-        console.log('BLOCK =>', block.type);
-
         switch (block.type) {
         case 'CODE':
-            return <ArticleCodeBlockComponent key={block.id} className={cls.block} block={block} />;
+            return (
+                <ArticleCodeBlockComponent
+                    key={block.id}
+                    className={cls.block}
+                    block={block}
+                />
+            );
 
         case 'IMAGE':
-            return <ArticleImageBlockComponent key={block.id} className={cls.block} block={block} />;
+            return (
+                <ArticleImageBlockComponent
+                    key={block.id}
+                    className={cls.block}
+                    block={block}
+                />
+            );
 
         case 'TEXT':
-            return <ArticleTextBlockComponent key={block.id} className={cls.block} block={block} />;
+            return (
+                <ArticleTextBlockComponent
+                    key={block.id}
+                    className={cls.block}
+                    block={block}
+                />
+            );
 
         default:
             return null;
@@ -60,7 +75,9 @@ export const ArticleDetails: React.FC<Props> = memo(({ className, articleId }) =
     }, []);
 
     useEffect(() => {
-        dispatch(fetchArticleById(articleId));
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchArticleById(articleId));
+        }
     }, [dispatch, articleId]);
 
     let content;
@@ -80,7 +97,7 @@ export const ArticleDetails: React.FC<Props> = memo(({ className, articleId }) =
             <Text
                 align={TextAlign.CENTER}
                 // title={t('Произошла ошибка при загрузке статьи')}
-                title="Произошла ошибка при загрузке статьи"
+                title={t('Произошла ошибка при загрузке статьи')}
             />
         );
     } else {
