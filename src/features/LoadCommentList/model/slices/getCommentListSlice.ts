@@ -1,10 +1,12 @@
 import {
+    PayloadAction,
     createEntityAdapter,
     createSlice,
 } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Comment } from 'entities/Comment';
 import { CommentListSchema } from '../types/CommentList.schema';
+import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
 const commentsAdapter = createEntityAdapter({
     selectId: (comment: Comment) => comment.id,
@@ -20,10 +22,33 @@ const getCommentListSlice = createSlice({
     initialState: commentsAdapter.getInitialState<CommentListSchema>({
         isLoading: false,
         error: undefined,
-        entities: {},
         ids: [],
+        entities: {},
     }),
     reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchCommentsByArticleId.pending, (state, action) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(
+                fetchCommentsByArticleId.fulfilled,
+                (
+                    state,
+                    action: PayloadAction<Comment[]>,
+                ) => {
+                    console.log('action.payload =>>>>', action.payload);
+
+                    state.isLoading = false;
+                    commentsAdapter.setAll(state, action.payload);
+                },
+            )
+            .addCase(fetchCommentsByArticleId.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            });
+    },
 });
 
 export const { actions: getCommentListSliceActions } = getCommentListSlice;

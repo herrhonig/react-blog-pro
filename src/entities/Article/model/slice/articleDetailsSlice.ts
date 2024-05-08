@@ -4,7 +4,7 @@ import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById'
 import { Article } from '../types/article';
 
 export interface CounterState {
-  value: number
+    value: number;
 }
 
 const initialState: ArticleDetailsSchema = {

@@ -41,16 +41,16 @@ export const CommentCard: React.FC<Props> = memo(({ className, comment, isLoadin
     return (
         <div className={classNames(cls.CommentCard, {}, [className])}>
             <div className={cls.header}>
-                {comment.user.avatar && (<Avatar size={30} src={comment.user.avatar} />)}
+                {comment?.user.avatar && (<Avatar size={30} src={comment?.user.avatar} />)}
                 <Text
                     className={cls.username}
-                    title={comment.user.username}
+                    title={comment?.user.username}
                 />
             </div>
 
             <Text
                 className={cls.text}
-                text={comment?.text}
+                text={comment?.body}
             />
         </div>
     );

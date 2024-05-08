@@ -2,7 +2,6 @@
 import {
     AnyAction,
     CombinedState,
-    Dispatch,
     EnhancedStore,
     Reducer,
     ReducersMapObject,
