@@ -25,7 +25,7 @@ export const RoutePath: Record<keyof typeof AppRoutes, string> = {
     ABOUT: '/about',
     ARTICLES: '/articles',
     ARTICLE_DETAILS: '/articles/', // + :id
-    PROFILE: '/profile',
+    PROFILE: '/profile/', // :id
     NOT_FOUND: '*',
 };
 
@@ -49,7 +49,7 @@ export const routeConfig: Record<keyof typeof AppRoutes, AppRouteProps> = {
         authOnly: true,
     },
     PROFILE: {
-        path: RoutePath.PROFILE,
+        path: `${RoutePath.PROFILE}:id`,
         element: <ProfilePage />,
         authOnly: true,
     },

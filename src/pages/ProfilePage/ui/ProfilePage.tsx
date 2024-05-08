@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
@@ -19,8 +20,9 @@ import {
 } from 'entities/Profile';
 
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import cls from './ProfilePage.module.scss';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
+import cls from './ProfilePage.module.scss';
 
 const reducers: ReducersList = {
     profile: profileReducer,
@@ -32,7 +34,9 @@ interface Props {
 
 const ProfilePage: React.FC<Props> = ({ className }) => {
     const { t } = useTranslation('profile');
+    const { id: profileId } = useParams<{id: string}>();
     const dispatch = useAppDispatch();
+
     const formdata = useSelector(getProfileForm);
     const error = useSelector(getProfileError);
     const isLoading = useSelector(getProfileLoading);
@@ -47,11 +51,11 @@ const ProfilePage: React.FC<Props> = ({ className }) => {
         [ValidateProfileError.INCORRECT_USER_DATA]: t('Введите обязательные поля'),
     };
 
-    useEffect(() => {
-        if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchProfileData());
+    useInitialEffect(() => {
+        if (profileId) {
+            dispatch(fetchProfileData(profileId));
         }
-    }, [dispatch]);
+    });
 
     const onChangeFirstname = useCallback((value?: string) => {
         dispatch(profileActions.updateData({ first: value || '' }));

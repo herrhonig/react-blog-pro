@@ -207,21 +207,44 @@
   "comments": [
     {
       "id": "1",
-      "body": "some comment",
+      "body": "Хорошая статья! Давай еще! Хорошая статья! Давай еще!",
       "articleId": "1",
       "userId": "1"
     },
     {
       "id": "2",
-      "body": "some comment_2",
+      "body": "Информативно, подписался",
       "articleId": "2",
-      "userId": "1"
+      "userId": "2"
     },
     {
       "id": "3",
-      "body": "some comment_3 some comment_3",
+      "body": "Хорошая статья! Давай еще! Хорошая статья! Давай еще!",
       "articleId": "2",
+      "userId": "3"
+    },
+    {
+      "id": "4",
+      "body": "Хорошая статья! Давай еще! Хорошая статья! Давай еще!",
+      "articleId": "2",
+      "userId": "3"
+    },
+    {
+      "id": "5",
+      "body": "Информативно, подписался",
+      "articleId": "1",
+      "userId": "1"
+    },    {
+      "id": "6",
+      "body": "Хорошая статья! Давай еще! Хорошая статья! Давай еще!",
+      "articleId": "1",
       "userId": "2"
+    },
+    {
+      "id": "7",
+      "body": "Информативно, подписался",
+      "articleId": "2",
+      "userId": "3"
     }
   ],
   "users": [
@@ -240,14 +263,39 @@
       "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Hacker_Inside_Logo_%28based_on_Intel_2002-2005_logo%29.svg/850px-Hacker_Inside_Logo_%28based_on_Intel_2002-2005_logo%29.svg.png"
     }
   ],
-  "profile": {
-    "first": "Nicky",
-    "lastname": "_B",
-    "age": 27,
-    "currency": "RUB",
-    "country": "Kazakhstan",
-    "city": "",
-    "username": "logell",
-    "avatar": "https://e7.pngegg.com/pngimages/190/445/png-clipart-def-con-hackers-on-planet-earth-security-hacker-sticker-hacker-emblem-hack-emblem-text.png"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "first": "Nicky",
+      "lastname": "_B",
+      "age": 27,
+      "currency": "RUB",
+      "country": "Kazakhstan",
+      "city": "Astana",
+      "username": "logell",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ30XlwtlWYBNQXV20Wm5bN4ovrJCV1sf4rRS-TiXDdfzbFBSjlkvsfNYuVsPFVr-ttVgU&usqp=CAU"
+    },
+    {
+      "id": "2",
+      "first": "Alex",
+      "lastname": "_M",
+      "age": 33,
+      "currency": "EUR",
+      "country": "Sweden",
+      "city": "",
+      "username": "alex77",
+      "avatar": "https://spng.pngfind.com/pngs/s/169-1697250_el-segundo-eagles-el-segundo-high-school-logo.png"
+    },
+    {
+      "id": "3",
+      "first": "Jeff",
+      "lastname": "Moses",
+      "age": 45,
+      "currency": "USD",
+      "country": "Thailand",
+      "city": "Phuket Town",
+      "username": "jm88",
+      "avatar": "https://w7.pngwing.com/pngs/787/486/png-transparent-vector-flame-pentecost-fire-logo-thumbnail.png"
+    }
+  ]
 }

@@ -20,9 +20,9 @@ export const SidebarItem: React.FC<Props> = memo(({
     collapsed,
 }) => {
     const { t } = useTranslation();
-    const isAuth = useSelector(getUserAuthData);
+    const auth = useSelector(getUserAuthData);
 
-    if (item.authOnly && !isAuth) {
+    if (item.authOnly && !auth) {
         return null;
     }
 

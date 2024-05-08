@@ -5,6 +5,8 @@ import { Text } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Comment } from 'entities/Comment';
 
+import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import cls from './CommentCard.module.scss';
 
 interface Props {
@@ -40,13 +42,22 @@ export const CommentCard: React.FC<Props> = memo(({ className, comment, isLoadin
     }
     return (
         <div className={classNames(cls.CommentCard, {}, [className])}>
-            <div className={cls.header}>
-                {comment?.user.avatar && (<Avatar size={30} src={comment?.user.avatar} />)}
+            <AppLink
+                to={`${RoutePath.PROFILE}${comment.user.id}`}
+                className={cls.header}
+            >
+                {comment?.user.avatar
+                && (
+                    <Avatar
+                        size={30}
+                        src={comment?.user.avatar}
+                    />
+                )}
                 <Text
                     className={cls.username}
                     title={comment?.user.username}
                 />
-            </div>
+            </AppLink>
 
             <Text
                 className={cls.text}
