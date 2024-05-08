@@ -7,9 +7,9 @@ import { classNames } from 'shared/lib/classNames';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { ArticleDetails } from 'entities/Article';
 
-import { CommentListLoader } from 'features/LoadCommentList/ui/CommentListLoader/CommentListLoader';
-import { getArticleComments } from 'features/LoadCommentList/model/slices/getCommentListSlice';
 import {
+    CommentListLoader,
+    getArticleDetailsCommentsSelector,
     fetchCommentsByArticleId,
     getArticleDetailsCommentsError,
     getArticleDetailsCommentsIsLoading,
@@ -17,6 +17,8 @@ import {
 
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetailsSlice';
 import cls from './ArticleDetailsPage.module.scss';
 
 interface Props {
@@ -24,14 +26,16 @@ interface Props {
 }
 
 // Note: uncomment when DynamicModuleLoader is needed;
-// const reducers: ReducersList = {};
+const reducers: ReducersList = {
+    articleDetails: articleDetailsReducer,
+};
 
 const ArticleDetailsPage: React.FC<Props> = ({ className }) => {
     const { t } = useTranslation('article-details');
 
     const dispatch = useAppDispatch();
 
-    const comments = useSelector(getArticleComments.selectAll);
+    const comments = useSelector(getArticleDetailsCommentsSelector.selectAll);
 
     const isCommentsLoading = useSelector(getArticleDetailsCommentsIsLoading);
 
@@ -52,18 +56,20 @@ const ArticleDetailsPage: React.FC<Props> = ({ className }) => {
     }
 
     return (
-        <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-            <ArticleDetails articleId={articleId} />
-            <Text
-                className={cls.commentTitle}
-                size={TextSize.L}
-                text={t('Комментарии')}
-            />
-            <CommentListLoader
-                comments={comments}
-                isLoading={isCommentsLoading}
-            />
-        </div>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+            <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+                <ArticleDetails articleId={articleId} />
+                <Text
+                    className={cls.commentTitle}
+                    size={TextSize.L}
+                    text={t('Комментарии')}
+                />
+                <CommentListLoader
+                    comments={comments}
+                    isLoading={isCommentsLoading}
+                />
+            </div>
+        </DynamicModuleLoader>
     );
 };
 export default memo(ArticleDetailsPage);

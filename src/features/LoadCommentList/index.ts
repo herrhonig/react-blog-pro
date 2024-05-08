@@ -1,10 +1,11 @@
 export { CommentListSchema } from './model/types/CommentList.schema';
 
-export { CommentListLoader } from './ui/CommentListLoader/CommentListLoader';
+export { CommentListLoaderAsync as CommentListLoader } from './ui/CommentListLoader/CommentListLoader.async';
 
 export {
+    getArticleDetailsCommentsSelector,
     getArticleDetailsCommentsError,
     getArticleDetailsCommentsIsLoading,
-} from './model/selectors/comments';
+} from './model/selectors/articleComments';
 
 export { fetchCommentsByArticleId } from './model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';

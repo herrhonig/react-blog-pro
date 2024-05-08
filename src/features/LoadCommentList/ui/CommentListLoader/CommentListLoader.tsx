@@ -19,7 +19,7 @@ const reducers: ReducersList = {
     articleDetailsComments: getCommentListSliceReducer,
 };
 
-export const CommentListLoader: React.FC<Props> = memo(({
+const CommentListLoader: React.FC<Props> = memo(({
     className,
     comments,
     isLoading,
@@ -46,3 +46,5 @@ export const CommentListLoader: React.FC<Props> = memo(({
         </DynamicModuleLoader>
     );
 });
+
+export default CommentListLoader;
