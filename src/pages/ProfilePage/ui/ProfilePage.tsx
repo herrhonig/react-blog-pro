@@ -34,13 +34,19 @@ interface Props {
 
 const ProfilePage: React.FC<Props> = ({ className }) => {
     const { t } = useTranslation('profile');
+
     const { id: profileId } = useParams<{id: string}>();
+
     const dispatch = useAppDispatch();
 
     const formdata = useSelector(getProfileForm);
+
     const error = useSelector(getProfileError);
+
     const isLoading = useSelector(getProfileLoading);
+
     const readonly = useSelector(getProfileReadonly);
+
     const validateErrors = useSelector(getProfileValidateErrors);
 
     const validateErrorTranslates = {

@@ -11,14 +11,14 @@ import cls from './CommentCard.module.scss';
 
 interface Props {
     className?: string;
-    comment: Comment;
-    isLoading: boolean;
+    comment?: Comment;
+    isLoading?: boolean;
 }
 
 export const CommentCard: React.FC<Props> = memo(({ className, comment, isLoading }) => {
     if (isLoading) {
         return (
-            <div className={classNames(cls.CommentCard, {}, [className])}>
+            <div className={classNames(cls.CommentCard, {}, [className, cls.loading])}>
                 <div className={cls.header}>
                     <Skeleton
                         width={30}
@@ -40,10 +40,13 @@ export const CommentCard: React.FC<Props> = memo(({ className, comment, isLoadin
 
         );
     }
+
+    if (!comment) return null;
+
     return (
         <div className={classNames(cls.CommentCard, {}, [className])}>
             <AppLink
-                to={`${RoutePath.PROFILE}${comment.user.id}`}
+                to={`${RoutePath.PROFILE}${comment?.user.id}`}
                 className={cls.header}
             >
                 {comment?.user.avatar

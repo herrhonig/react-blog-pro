@@ -1,3 +1,3 @@
 export { Comment } from './model/types/comment';
 
-export { CommentCard } from './ui/CommentCard/CommentCard';
+export { CommentListAsync as CommentList } from './ui/CommentList/CommentList.async';

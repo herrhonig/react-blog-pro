@@ -9,20 +9,18 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Text } from 'shared/ui/Text/Text';
-import { CommentCard } from 'entities/Comment';
+import { CommentList } from 'entities/Comment';
 
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { getArticleDetailsCommentListReducer } from '../../model/slices/getArticleDetailsCommentListSlice';
 import {
-    getArticleDetailsCommentsError,
     getArticleDetailsCommentsIsLoading,
     getArticleDetailsCommentsSelector,
 } from '../../model/selectors/articleComments';
 
 import cls from './GetArticleDetailsCommentList.module.scss';
 
-interface Props {
+export interface GetArticleDetailsCommentListProps {
     className?: string;
     articleId: string;
 }
@@ -31,7 +29,7 @@ const reducers: ReducersList = {
     articleDetailsComments: getArticleDetailsCommentListReducer,
 };
 
-const GetArticleDetailsCommentList: React.FC<Props> = memo(({
+const GetArticleDetailsCommentList: React.FC<GetArticleDetailsCommentListProps> = memo(({
     className,
     articleId,
 }) => {
@@ -41,33 +39,18 @@ const GetArticleDetailsCommentList: React.FC<Props> = memo(({
 
     const isLoading = useSelector(getArticleDetailsCommentsIsLoading);
 
-    const error = useSelector(getArticleDetailsCommentsError);
-
-    const { t } = useTranslation('comment');
-
     useInitialEffect(() => {
         dispatch(fetchCommentsByArticleId(articleId));
     });
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames(cls.Root, {}, [className])}>
-                {comments?.length
-                    ? comments?.map((comment) => (
-                        <CommentCard
-                            className={cls.comment}
-                            key={comment?.id}
-                            comment={comment}
-                            isLoading={isLoading}
-                        />
-                    ))
-                    : (
-                        <Text text={t('Комментарии отсутствуют')} />
-
-                    )}
-            </div>
+            <CommentList
+                comments={comments}
+                isLoading={isLoading}
+            />
         </DynamicModuleLoader>
-    ); 
+    );
 });
 
 export default GetArticleDetailsCommentList;

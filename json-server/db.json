@@ -24,7 +24,9 @@
       "img": "https://static.vecteezy.com/system/resources/previews/012/697/298/non_2x/3d-javascript-logo-design-free-png.png",
       "views": 1034,
       "createdAt": "20.04.2024",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -117,7 +119,9 @@
       "img": "https://static.vecteezy.com/system/resources/previews/012/697/298/non_2x/3d-javascript-logo-design-free-png.png",
       "views": 1034,
       "createdAt": "20.04.2024",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -234,7 +238,8 @@
       "body": "Информативно, подписался",
       "articleId": "1",
       "userId": "1"
-    },    {
+    },
+    {
       "id": "6",
       "body": "Хорошая статья! Давай еще! Хорошая статья! Давай еще!",
       "articleId": "1",
@@ -245,6 +250,42 @@
       "body": "Информативно, подписался",
       "articleId": "2",
       "userId": "3"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "новый коммент",
+      "id": "uj2DFQv"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "новый коммент",
+      "id": "A_hn_S0"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "body": "тест новый коммент_1",
+      "id": "x2hioTy"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "body": "тест новый коммент_2",
+      "id": "QS-RLYb"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "body": "привет, мир!",
+      "id": "Mba5Ay1"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "body": "хехехех",
+      "id": "zIIiDLk"
     }
   ],
   "users": [
@@ -278,7 +319,7 @@
     {
       "id": "2",
       "first": "Alex",
-      "lastname": "_M",
+      "lastname": "M",
       "age": 33,
       "currency": "EUR",
       "country": "Sweden",

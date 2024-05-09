@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Country } from 'entities/Country';
 import { Currency } from 'entities/Currency';
 
@@ -10,6 +11,7 @@ export enum ValidateProfileError {
 }
 
 interface BaseProfile {
+    id: string;
     first: string;
     lastname: string;
     age: number;

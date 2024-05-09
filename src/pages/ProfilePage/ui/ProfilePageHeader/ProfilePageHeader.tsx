@@ -1,13 +1,20 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames';
+import { useSelector } from 'react-redux';
 
+import { classNames } from 'shared/lib/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Text } from 'shared/ui/Text/Text';
-import { useSelector } from 'react-redux';
-import { getProfileReadonly, profileActions, updateProfileData } from 'entities/Profile';
 
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import {
+    getProfileData,
+    getProfileReadonly,
+    profileActions,
+    updateProfileData,
+} from 'entities/Profile';
+import { getUserAuthData } from 'entities/User';
+
 import cls from './ProfilePageHeader.module.scss';
 
 interface Props {
@@ -16,8 +23,14 @@ interface Props {
 
 export const ProfilePageHeader: React.FC<Props> = ({ className }) => {
     const { t } = useTranslation('profile');
+
     const dispatch = useAppDispatch();
+
     const readonly = useSelector(getProfileReadonly);
+
+    const authData = useSelector(getUserAuthData);
+
+    const profileData = useSelector(getProfileData);
 
     const onEdit = useCallback(() => {
         dispatch(profileActions.setReadonly(false));
@@ -31,37 +44,46 @@ export const ProfilePageHeader: React.FC<Props> = ({ className }) => {
         dispatch(updateProfileData());
     }, [dispatch]);
 
+    const canEdit = authData?.id === profileData?.id;
+
     return (
         <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
             <Text title={t('Профиль')} />
-            {readonly
-                ? (
-                    <Button
-                        className={cls.editBtn}
-                        theme={ButtonTheme.OUTLINE}
-                        onClick={onEdit}
-                    >
-                        {t('Редактировать')}
-                    </Button>
-                )
-                : (
-                    <>
-                        <Button
-                            className={cls.editBtn}
-                            theme={ButtonTheme.OUTLINE_RED}
-                            onClick={onCancelEdit}
-                        >
-                            {t('Отменить')}
-                        </Button>
-                        <Button
-                            className={cls.saveBtn}
-                            theme={ButtonTheme.OUTLINE}
-                            onClick={onSave}
-                        >
-                            {t('Сохранить')}
-                        </Button>
-                    </>
-                )}
+            {canEdit && (
+                <div className={cls.buttonsWrapper}>
+                    {
+                        readonly
+                            ? (
+                                <Button
+                                    className={cls.editBtn}
+                                    theme={ButtonTheme.OUTLINE}
+                                    onClick={onEdit}
+                                >
+                                    {t('Редактировать')}
+                                </Button>
+                            )
+                            : (
+                                <>
+                                    <Button
+                                        className={cls.editBtn}
+                                        theme={ButtonTheme.OUTLINE_RED}
+                                        onClick={onCancelEdit}
+                                    >
+                                        {t('Отменить')}
+                                    </Button>
+                                    <Button
+                                        className={cls.saveBtn}
+                                        theme={ButtonTheme.OUTLINE}
+                                        onClick={onSave}
+                                    >
+                                        {t('Сохранить')}
+                                    </Button>
+                                </>
+                            )
+                    }
+                </div>
+
+            )}
         </div>
     );
 };

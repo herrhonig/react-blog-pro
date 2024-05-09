@@ -1,17 +1,19 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from 'shared/lib/classNames';
-import { Text, TextSize } from 'shared/ui/Text/Text';
-import { ArticleDetails } from 'entities/Article';
-
-import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { Text, TextSize } from 'shared/ui/Text/Text';
+
+import { ArticleDetails } from 'entities/Article';
 import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetailsSlice';
-import GetArticleDetailsCommentList from 'features/GetArticleDetailsCommentList/ui/GetArticleDetailsCommentList/GetArticleDetailsCommentList';
+
+import { GetArticleDetailsCommentList } from 'features/GetArticleDetailsCommentList';
+import { AddCommentForm } from 'features/AddCommentForm';
+
+import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
 import cls from './ArticleDetailsPage.module.scss';
 
 interface Props {
@@ -27,6 +29,12 @@ const ArticleDetailsPage: React.FC<Props> = ({ className }) => {
     const { t } = useTranslation('article-details');
 
     const { id: articleId } = useParams<{id: string}>();
+
+    const dispatch = useAppDispatch();
+
+    const onSendComment = useCallback((text: string) => {
+        dispatch(addCommentForArticle(text));
+    }, [dispatch]);
 
     if (!articleId) {
         return (
@@ -46,6 +54,9 @@ const ArticleDetailsPage: React.FC<Props> = ({ className }) => {
                     className={cls.commentTitle}
                     size={TextSize.L}
                     text={t('Комментарии')}
+                />
+                <AddCommentForm
+                    onSendComment={onSendComment}
                 />
                 <GetArticleDetailsCommentList
                     articleId={articleId}
