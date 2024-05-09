@@ -4,13 +4,13 @@ import {
 } from '@reduxjs/toolkit';
 import { Comment } from 'entities/Comment';
 
-import { CommentListSchema } from '../types/CommentList.schema';
 import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { commentListAdapter } from '../adapters/commentListAdapter';
+import { GetArticleDetailsCommentListSchema } from '../types/GetArticleDetailsCommentList.schema';
 
-const getCommentListSlice = createSlice({
-    name: 'getCommentListSlice',
-    initialState: commentListAdapter.getInitialState<CommentListSchema>({
+const getArticleDetailsCommentListSlice = createSlice({
+    name: 'getArticleDetailsCommentListSlice',
+    initialState: commentListAdapter.getInitialState<GetArticleDetailsCommentListSchema>({
         isLoading: false,
         error: undefined,
         ids: [],
@@ -40,5 +40,5 @@ const getCommentListSlice = createSlice({
     },
 });
 
-export const { actions: getCommentListSliceActions } = getCommentListSlice;
-export const { reducer: getCommentListSliceReducer } = getCommentListSlice;
+export const { actions: getArticleDetailsCommentListActions } = getArticleDetailsCommentListSlice;
+export const { reducer: getArticleDetailsCommentListReducer } = getArticleDetailsCommentListSlice;
