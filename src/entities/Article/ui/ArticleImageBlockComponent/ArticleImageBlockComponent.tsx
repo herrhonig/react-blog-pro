@@ -3,7 +3,7 @@ import { classNames } from 'shared/lib/classNames';
 
 import { Text, TextAlign } from 'shared/ui/Text/Text';
 import cls from './ArticleImageBlockComponent.module.scss';
-import { ArticleImageBlock } from '../../../model/types/article';
+import { ArticleImageBlock } from '../../model/types/article';
 
 interface Props {
     className?: string;
