@@ -30,7 +30,7 @@ export const SidebarItem: React.FC<Props> = memo(({
         <AppLink
             to={item.path}
             className={classNames(cls.item, { [cls.collapsed]: collapsed })}
-            theme={AppLinkTheme.SECONDARY}
+            theme={AppLinkTheme.PRIMARY}
         >
             {/* @ts-ignore */}
             <item.Icon className={cls.icon} />

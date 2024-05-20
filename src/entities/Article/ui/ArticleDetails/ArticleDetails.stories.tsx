@@ -17,6 +17,11 @@ const Template: ComponentStory<typeof ArticleDetails> = (args) => <ArticleDetail
 
 const article: Article = {
     id: '1',
+    user: {
+        id: '1',
+        username: 'logell',
+        avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Hacker_Inside_Logo_%28based_on_Intel_2002-2005_logo%29.svg/850px-Hacker_Inside_Logo_%28based_on_Intel_2002-2005_logo%29.svg.png',
+    },
     title: 'Javascript news',
     subtitle: 'Что нового в JS за 2022 год?',
     img: 'https://static.vecteezy.com/system/resources/previews/012/697/298/non_2x/3d-javascript-logo-design-free-png.png',

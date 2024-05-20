@@ -1,3 +1,6 @@
+import { User } from 'entities/User';
+
+/* eslint-disable no-unused-vars */
 export type ArticleType = 'IT' | 'SCIENCE' | 'ECONOMICS';
 
 export type ArticleBlockType = 'CODE' | 'TEXT' | 'IMAGE' | 'WARNING';
@@ -34,6 +37,7 @@ export type ArticleBlock = ArticleTextBlock | ArticleImageBlock | ArticleCodeBlo
 
 export interface Article {
     id: string;
+    user: User;
     title: string;
     subtitle: string;
     img: string;
@@ -41,4 +45,9 @@ export interface Article {
     createdAt: string;
     type: ArticleType[];
     blocks: ArticleBlock[];
+}
+
+export enum ArticleView {
+    BIG = 'BIG',
+    SMALL = 'SMALL',
 }

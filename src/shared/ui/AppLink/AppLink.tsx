@@ -18,7 +18,7 @@ interface Props extends LinkProps {
 
 export const AppLink: React.FC<Props> = memo(({
     to,
-    theme = AppLinkTheme.PRIMARY,
+    theme = AppLinkTheme.SECONDARY,
     children,
     className,
     ...otherProps

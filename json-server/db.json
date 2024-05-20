@@ -19,6 +19,7 @@
   "articles": [
     {
       "id": "1",
+      "userId": "2",
       "title": "Javascript news",
       "subtitle": "What`s new in JS for 2024?",
       "img": "https://static.vecteezy.com/system/resources/previews/012/697/298/non_2x/3d-javascript-logo-design-free-png.png",
@@ -114,6 +115,7 @@
     },
     {
       "id": "2",
+      "userId": "1",
       "title": "Javascript news",
       "subtitle": "What`s new in JS for 2024?",
       "img": "https://static.vecteezy.com/system/resources/previews/012/697/298/non_2x/3d-javascript-logo-design-free-png.png",

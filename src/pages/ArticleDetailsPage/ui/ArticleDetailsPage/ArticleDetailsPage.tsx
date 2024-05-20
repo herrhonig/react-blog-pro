@@ -1,11 +1,13 @@
 import React, { memo, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { Text, TextSize } from 'shared/ui/Text/Text';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 
 import { ArticleDetails } from 'entities/Article';
 import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetailsSlice';
@@ -32,9 +34,15 @@ const ArticleDetailsPage: React.FC<Props> = ({ className }) => {
 
     const dispatch = useAppDispatch();
 
+    const navigate = useNavigate();
+
     const onSendComment = useCallback((text: string) => {
         dispatch(addCommentForArticle(text));
     }, [dispatch]);
+
+    const onBackToListHandler = useCallback(() => {
+        navigate(RoutePath.ARTICLES);
+    }, [navigate]);
 
     if (!articleId) {
         return (
@@ -47,6 +55,12 @@ const ArticleDetailsPage: React.FC<Props> = ({ className }) => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+                <Button
+                    theme={ButtonTheme.OUTLINE}
+                    onClick={onBackToListHandler}
+                >
+                    {t('Назад к списку')}
+                </Button>
                 <ArticleDetails
                     articleId={articleId}
                 />

@@ -1,16 +1,22 @@
-/* stylelint-disable color-function-notation */
+/* stylelint-disable length-zero-no-unit */
+/* stylelint-disable color-hex-case */
 :root {
-    --bg-color: #fff;
-    --inverted-bg-color: #232323;
-    --primary-color: #1d1a1a;
-    --secondary-color: #ffbd07;
-    --inverted-primary-color: #ffbd07;
-    --inverted-secondary-color: #fff;
+    --bg-color: #F9D142;
+    --inverted-bg-color: #292826;
+    --primary-color: #F9D142;
+    --secondary-color: #FBF9F4;
+    --inverted-primary-color: #292826;
+    --inverted-secondary-color: #F8481B;
 
     // skeleton
     --skeleton-color: #d1b977;
-    --skeleton-shadow: rgb(131, 123, 103);
+    --skeleton-shadow: rgb(131 123 103);
 
     // code
     --code-bg-color: #f7f7f7;
+
+    // card
+    --card-bg: #161b21;
+    --card-border-color: #FBF9F4;
+    --card-shadow: #32325d40 0px 2px 5px -1px, #0000004d 0px 1px 3px -1px;
 }

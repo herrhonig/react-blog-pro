@@ -19,5 +19,3 @@ export function classNames(
 моды с поведением элемента;
 и последним аргументом - массив доп. классов
 */
-
-classNames('remove-btn', { hovered: true, selectable: true, red: true }, ['pdg']);
