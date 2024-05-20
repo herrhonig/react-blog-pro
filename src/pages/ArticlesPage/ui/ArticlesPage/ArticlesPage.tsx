@@ -6,6 +6,7 @@ import { classNames } from 'shared/lib/classNames';
 
 import { useTranslation } from 'react-i18next';
 import { Article, ArticleList, ArticleView } from 'entities/Article';
+import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import cls from './ArticlesPage.module.scss';
 
 interface Props {
@@ -121,7 +122,10 @@ const ArticlesPage: React.FC<Props> = ({ className }) => {
 
     return (
         <div className={classNames(cls.ArticlesPage, {}, [className])}>
-            {t('Статьи')}
+            <Text
+                title={t('Статьи')}
+                size={TextSize.L}
+            />
 
             <ArticleList
                 isLoading={false}
