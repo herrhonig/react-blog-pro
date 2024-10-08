@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React, { memo, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import {
     Article, ArticleList, ArticleView, ArticleViewSwitcher,
@@ -9,7 +10,6 @@ import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/Dynamic
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { useSelector } from 'react-redux';
 import { getArticlesPageError, getArticlesPageIsLoading, getArticlesPageView } from '../../model/selectors/articlesPageSelectors';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList';
 import { articlesPageActions, articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice';
@@ -144,6 +144,7 @@ const ArticlesPage: React.FC<Props> = ({ className }) => {
 
     useInitialEffect(() => {
         dispatch(fetchArticlesList());
+        dispatch(articlesPageActions.initState());
     });
 
     return (

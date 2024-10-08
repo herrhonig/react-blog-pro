@@ -34,11 +34,9 @@ export const ArticleViewSwitcher = memo(
                     <Button theme={ButtonTheme.CLEAR} onClick={onClick(viewType)}>
                         <Icon
                             SvgComponent={icon}
-                            className={
-                                classNames(cls.Icon, {
-                                    [cls.selected]: view === viewType,
-                                })
-                            }
+                            className={classNames(cls.icon, {
+                                [cls.selected]: view === viewType,
+                            })}
                         />
                     </Button>
                 ))}
