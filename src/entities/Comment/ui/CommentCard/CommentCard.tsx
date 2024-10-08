@@ -46,19 +46,19 @@ export const CommentCard: React.FC<Props> = memo(({ className, comment, isLoadin
     return (
         <div className={classNames(cls.CommentCard, {}, [className])}>
             <AppLink
-                to={`${RoutePath.PROFILE}${comment?.user.id}`}
+                to={`${RoutePath.PROFILE}/${comment?.user?.id}`}
                 className={cls.header}
             >
-                {comment?.user.avatar
+                {comment?.user?.avatar
                 && (
                     <Avatar
                         size={30}
-                        src={comment?.user.avatar}
+                        src={comment?.user?.avatar}
                     />
                 )}
                 <Text
                     className={cls.username}
-                    title={comment?.user.username}
+                    title={comment?.user?.username}
                 />
             </AppLink>
 

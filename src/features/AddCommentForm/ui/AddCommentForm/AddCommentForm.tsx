@@ -48,7 +48,7 @@ export const AddCommentForm: React.FC<AddCommentFormProps> = memo(({
         dispatch(addCommentFormActions.setText(value));
     }, [dispatch]);
 
-    const onSendCommentHandler = useCallback(() => {
+    const handleCommentSend = useCallback(() => {
         onSendComment(text || '');
         onChangeCommentText('');
     }, [onSendComment, onChangeCommentText, text]);
@@ -66,7 +66,7 @@ export const AddCommentForm: React.FC<AddCommentFormProps> = memo(({
                 <Button
                     theme={ButtonTheme.OUTLINE}
                     disabled={!text?.length}
-                    onClick={onSendCommentHandler}
+                    onClick={handleCommentSend}
                 >
                     {t('Отправить')}
                 </Button>

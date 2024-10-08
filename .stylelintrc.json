@@ -3,6 +3,7 @@
   "files": ["**/*.scss"],
   "rules": {
     "indentation": [4],
-    "selector-class-pattern": null
+    "selector-class-pattern": null,
+    "string-quotes": "single"
   }
 }

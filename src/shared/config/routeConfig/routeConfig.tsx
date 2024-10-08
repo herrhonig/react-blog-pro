@@ -24,8 +24,8 @@ export const RoutePath: Record<keyof typeof AppRoutes, string> = {
     MAIN: '/',
     ABOUT: '/about',
     ARTICLES: '/articles',
-    ARTICLE_DETAILS: '/articles/', // + :id
-    PROFILE: '/profile/', // :id
+    ARTICLE_DETAILS: '/articles', // + :id
+    PROFILE: '/profile', // :id
     NOT_FOUND: '*',
 };
 
@@ -44,12 +44,12 @@ export const routeConfig: Record<keyof typeof AppRoutes, AppRouteProps> = {
         authOnly: true,
     },
     ARTICLE_DETAILS: {
-        path: `${RoutePath.ARTICLE_DETAILS}:id`,
+        path: `${RoutePath.ARTICLE_DETAILS}/:id`,
         element: <ArticleDetailsPage />,
         authOnly: true,
     },
     PROFILE: {
-        path: `${RoutePath.PROFILE}:id`,
+        path: `${RoutePath.PROFILE}/:id`,
         element: <ProfilePage />,
         authOnly: true,
     },

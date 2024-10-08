@@ -1,0 +1,7 @@
+.Icon {
+    fill: var(--card-bg);
+
+    &.selected {
+        fill: var(--red-light);
+    }
+}

@@ -3,6 +3,7 @@ export { ArticleDetailsSchema } from './model/types/articleDetails.schema';
 
 export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails';
 export { ArticleList } from './ui/ArticleList/ArticleList';
+export { ArticleViewSwitcher } from './ui/ArticleViewSwitcher/ArticleViewSwitcher';
 
 export {
     getArticleDetailsData,

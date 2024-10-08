@@ -35,9 +35,9 @@ export const ArticleListItem: React.FC<Props> = ({
     const { t } = useTranslation('article');
     const navigate = useNavigate();
 
-    const onOpenArticle = useCallback(() => {
-        navigate(`${RoutePath.ARTICLE_DETAILS}1`);
-    }, [navigate]);
+    const onOpen = useCallback(() => {
+        navigate(`${RoutePath.ARTICLE_DETAILS}/${article.id}`);
+    }, [navigate, article.id]);
 
     const types = (
         <Text
@@ -92,7 +92,7 @@ export const ArticleListItem: React.FC<Props> = ({
                     <div className={cls.footer}>
                         <Button
                             theme={ButtonTheme.OUTLINE}
-                            onClick={onOpenArticle}
+                            onClick={onOpen}
                         >
                             {`${t('Читать далее')}...`}
                         </Button>
@@ -111,7 +111,7 @@ export const ArticleListItem: React.FC<Props> = ({
         >
             <Card
                 className={cls.card}
-                onClick={onOpenArticle}
+                onClick={onOpen}
             >
                 <div className={cls.imageWrapper}>
                     <img

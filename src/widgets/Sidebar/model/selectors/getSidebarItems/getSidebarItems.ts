@@ -40,7 +40,7 @@ export const getSidebarItems = createSelector(
                 },
 
                 {
-                    path: `${RoutePath.PROFILE}${userData?.id}`,
+                    path: `${RoutePath.PROFILE}/${userData?.id}`,
                     Icon: ProfileIcon,
                     text: 'Профиль',
                     authOnly: true,

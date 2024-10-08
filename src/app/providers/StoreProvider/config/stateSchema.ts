@@ -14,8 +14,9 @@ import { CounterSchema } from 'entities/Counter';
 import { ProfileSchema } from 'entities/Profile';
 import { ArticleDetailsSchema } from 'entities/Article';
 
-import { LoginSchema } from 'features/AuthByUsername';
+import { ArtilcesPageSchema } from 'pages/ArticlesPage';
 
+import { LoginSchema } from 'features/AuthByUsername';
 import { AddCommentFormSchema } from 'features/AddCommentForm';
 import { GetArticleDetailsCommentListSchema } from 'features/GetArticleDetailsCommentList';
 
@@ -27,6 +28,7 @@ export interface StateSchema {
      */
     profile?: ProfileSchema;
     loginForm?: LoginSchema;
+    articlesPage?: ArtilcesPageSchema
     articleDetails?: ArticleDetailsSchema;
     articleDetailsComments?: GetArticleDetailsCommentListSchema;
     addCommentForm?: AddCommentFormSchema;

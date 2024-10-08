@@ -1,12 +1,18 @@
 /* eslint-disable max-len */
-import React, { memo } from 'react';
-import { v4 } from 'uuid';
-
-import { classNames } from 'shared/lib/classNames';
-
+import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Article, ArticleList, ArticleView } from 'entities/Article';
-import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
+import {
+    Article, ArticleList, ArticleView, ArticleViewSwitcher,
+} from 'entities/Article';
+import { classNames } from 'shared/lib/classNames';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { Text, TextSize } from 'shared/ui/Text/Text';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { useSelector } from 'react-redux';
+import { getArticlesPageError, getArticlesPageIsLoading, getArticlesPageView } from '../../model/selectors/articlesPageSelectors';
+import { fetchArticlesList } from '../../model/services/fetchArticlesList';
+import { articlesPageActions, articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice';
 import cls from './ArticlesPage.module.scss';
 
 interface Props {
@@ -117,24 +123,44 @@ const article = {
     ],
 } as Article;
 
+const reducers: ReducersList = {
+    articlesPage: articlesPageReducer,
+};
+
 const ArticlesPage: React.FC<Props> = ({ className }) => {
     const { t } = useTranslation('article');
 
-    return (
-        <div className={classNames(cls.ArticlesPage, {}, [className])}>
-            <Text
-                title={t('Статьи')}
-                size={TextSize.L}
-            />
+    const dispatch = useAppDispatch();
 
-            <ArticleList
-                isLoading={false}
-                view={ArticleView.BIG}
-                articles={[
-                    ...new Array(50).fill(article).map((article: Article) => ({ ...article, id: v4() })),
-                ]}
-            />
-        </div>
+    const articles = useSelector(getArticles.selectAll);
+
+    const isLoading = useSelector(getArticlesPageIsLoading);
+    const error = useSelector(getArticlesPageError);
+    const view = useSelector(getArticlesPageView);
+
+    const onChangeView = useCallback((view: ArticleView) => {
+        dispatch(articlesPageActions.setView(view));
+    }, [dispatch]);
+
+    useInitialEffect(() => {
+        dispatch(fetchArticlesList());
+    });
+
+    return (
+        <DynamicModuleLoader reducers={reducers}>
+            <div className={classNames(cls.ArticlesPage, {}, [className])}>
+                <Text
+                    title={t('Статьи')}
+                    size={TextSize.L}
+                />
+                <ArticleViewSwitcher view={view} onChangeView={onChangeView} />
+                <ArticleList
+                    isLoading={isLoading}
+                    view={view}
+                    articles={articles}
+                />
+            </div>
+        </DynamicModuleLoader>
     );
 };
 
