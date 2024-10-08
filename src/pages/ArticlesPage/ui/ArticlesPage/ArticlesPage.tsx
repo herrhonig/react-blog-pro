@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import {
@@ -142,10 +142,16 @@ const ArticlesPage: React.FC<Props> = ({ className }) => {
         dispatch(articlesPageActions.setView(view));
     }, [dispatch]);
 
-    useInitialEffect(() => {
-        dispatch(fetchArticlesList());
+    // useInitialEffect(() => {
+    //     dispatch(articlesPageActions.initState());
+    //     dispatch(fetchArticlesList({ page: 1 }));
+    // });
+
+    useEffect(() => {
         dispatch(articlesPageActions.initState());
-    });
+        dispatch(fetchArticlesList({ page: 1 }));
+    }, [view, dispatch]);
+
 
     return (
         <DynamicModuleLoader reducers={reducers}>
