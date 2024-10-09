@@ -2,9 +2,6 @@ import React, { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
     Profile,
     ProfileCard,
@@ -18,9 +15,12 @@ import {
     profileActions,
     profileReducer,
 } from 'entities/Profile';
-
-import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { classNames } from 'shared/lib/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { Page } from 'shared/ui/Page';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 import cls from './ProfilePage.module.scss';
 
@@ -34,19 +34,13 @@ interface Props {
 
 const ProfilePage: React.FC<Props> = ({ className }) => {
     const { t } = useTranslation('profile');
-
     const { id: profileId } = useParams<{id: string}>();
-
     const dispatch = useAppDispatch();
 
     const formdata = useSelector(getProfileForm);
-
     const error = useSelector(getProfileError);
-
     const isLoading = useSelector(getProfileLoading);
-
     const readonly = useSelector(getProfileReadonly);
-
     const validateErrors = useSelector(getProfileValidateErrors);
 
     const validateErrorTranslates = {
@@ -101,7 +95,7 @@ const ProfilePage: React.FC<Props> = ({ className }) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames('', {}, [className])}>
+            <Page className={classNames('', {}, [className])}>
                 <ProfilePageHeader />
                 {!!validateErrors?.length && (
                     validateErrors.map((error) => (
@@ -126,7 +120,7 @@ const ProfilePage: React.FC<Props> = ({ className }) => {
                     onChangeCurrency={onChangeCurrency}
                     onChangeCountry={onChangeCountry}
                 />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     );
 };

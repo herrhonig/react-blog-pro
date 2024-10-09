@@ -38,7 +38,7 @@ export const Sidebar: React.FC<Props> = memo(({ className }) => {
     )), [collapsed, sidebarItemsList]);
 
     return (
-        <div
+        <menu
             data-testid="sidebar"
             className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
         >
@@ -64,6 +64,6 @@ export const Sidebar: React.FC<Props> = memo(({ className }) => {
                     shortName={collapsed}
                 />
             </div>
-        </div>
+        </menu>
     );
 });

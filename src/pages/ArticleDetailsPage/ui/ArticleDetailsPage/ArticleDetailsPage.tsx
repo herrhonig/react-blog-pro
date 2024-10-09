@@ -6,6 +6,7 @@ import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { Page } from 'shared/ui/Page';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 
@@ -46,15 +47,15 @@ const ArticleDetailsPage: React.FC<Props> = ({ className }) => {
 
     if (!articleId) {
         return (
-            <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+            <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
                 {t('Статья не найдена')}
-            </div>
+            </Page>
         );
     }
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+            <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
                 <Button
                     theme={ButtonTheme.OUTLINE}
                     onClick={onBackToListHandler}
@@ -75,7 +76,7 @@ const ArticleDetailsPage: React.FC<Props> = ({ className }) => {
                 <GetArticleDetailsCommentList
                     articleId={articleId}
                 />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     );
 };

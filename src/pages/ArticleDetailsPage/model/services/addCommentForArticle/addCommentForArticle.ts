@@ -40,7 +40,7 @@ export const addCommentForArticle = createAsyncThunk<Comment, string, ThunkConfi
 
             return response.data;
         } catch (e) {
-            console.log(e);
+            console.error(e);
 
             return rejectWithValue('Error');
         }

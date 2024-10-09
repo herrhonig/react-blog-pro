@@ -43,7 +43,6 @@ server.post('/login', (req, res) => {
 //     try {
 //         const profileData = req.body;
 
-
 //     } catch (e) {
 //         console.log(e);
 //     }
@@ -53,7 +52,7 @@ server.post('/login', (req, res) => {
 // eslint-disable-next-line consistent-return
 server.use(async (req, res, next) => {
     if (!req.headers.authorization) {
-        return res.status(403).json({ message: 'Please, auth!' });
+        return res.status(403).json({ message: 'Please, sign in.' });
     }
     next();
 });

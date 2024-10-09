@@ -3,20 +3,36 @@ import React, { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import {
-    Article, ArticleList, ArticleView, ArticleViewSwitcher,
+    Article,
+    ArticleList,
+    ArticleView,
+    ArticleViewSwitcher,
 } from 'entities/Article';
 import { classNames } from 'shared/lib/classNames';
-import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { Page } from 'shared/ui/Page';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { getArticlesPageError, getArticlesPageIsLoading, getArticlesPageView } from '../../model/selectors/articlesPageSelectors';
+import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/services/fetchNextArticlesPage';
+import {
+    getArticlesPageError,
+    getArticlesPageIsLoading,
+    getArticlesPageView,
+} from '../../model/selectors/articlesPageSelectors';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList';
-import { articlesPageActions, articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice';
+import {
+    articlesPageActions,
+    articlesPageReducer,
+    getArticles,
+} from '../../model/slices/articlesPageSlice';
 import cls from './ArticlesPage.module.scss';
 
 interface Props {
-    className?: string;
+  className?: string;
 }
 
 const article = {
@@ -24,19 +40,15 @@ const article = {
     user: {
         id: '1',
         username: 'logell',
-        avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Hacker_Inside_Logo_%28based_on_Intel_2002-2005_logo%29.svg/850px-Hacker_Inside_Logo_%28based_on_Intel_2002-2005_logo%29.svg.png',
+        avatar:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Hacker_Inside_Logo_%28based_on_Intel_2002-2005_logo%29.svg/850px-Hacker_Inside_Logo_%28based_on_Intel_2002-2005_logo%29.svg.png',
     },
     title: 'Javascript news',
     subtitle: 'What`s new in JS for 2024?',
     img: 'https://static.vecteezy.com/system/resources/previews/012/697/298/non_2x/3d-javascript-logo-design-free-png.png',
     views: 1034,
     createdAt: '20.04.2024',
-    type: [
-        'IT',
-        'POLITICS',
-        'SCIENCE',
-        'SPORT',
-    ],
+    type: ['IT', 'POLITICS', 'SCIENCE', 'SPORT'],
     blocks: [
         {
             id: '1',
@@ -129,17 +141,22 @@ const reducers: ReducersList = {
 
 const ArticlesPage: React.FC<Props> = ({ className }) => {
     const { t } = useTranslation('article');
-
     const dispatch = useAppDispatch();
 
     const articles = useSelector(getArticles.selectAll);
-
     const isLoading = useSelector(getArticlesPageIsLoading);
-    const error = useSelector(getArticlesPageError);
     const view = useSelector(getArticlesPageView);
+    const error = useSelector(getArticlesPageError);
 
-    const onChangeView = useCallback((view: ArticleView) => {
-        dispatch(articlesPageActions.setView(view));
+    const onChangeView = useCallback(
+        (view: ArticleView) => {
+            dispatch(articlesPageActions.setView(view));
+        },
+        [dispatch],
+    );
+
+    const onLoadMoreData = useCallback(() => {
+        dispatch(fetchNextArticlesPage());
     }, [dispatch]);
 
     // useInitialEffect(() => {
@@ -152,21 +169,22 @@ const ArticlesPage: React.FC<Props> = ({ className }) => {
         dispatch(fetchArticlesList({ page: 1 }));
     }, [view, dispatch]);
 
+    if (error) {
+        return (
+            <Text text={error} />
+        );
+    }
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <div className={classNames(cls.ArticlesPage, {}, [className])}>
-                <Text
-                    title={t('Статьи')}
-                    size={TextSize.L}
-                />
+            <Page
+                onScrollEnd={onLoadMoreData}
+                className={classNames(cls.ArticlesPage, {}, [className])}
+            >
+                <Text title={t('Статьи')} size={TextSize.L} />
                 <ArticleViewSwitcher view={view} onChangeView={onChangeView} />
-                <ArticleList
-                    isLoading={isLoading}
-                    view={view}
-                    articles={articles}
-                />
-            </div>
+                <ArticleList isLoading={isLoading} view={view} articles={articles} />
+            </Page>
         </DynamicModuleLoader>
     );
 };
