@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const Page: React.FC<Props> = memo(
-    ({ className, children, onScrollEnd = () => {} }) => {
+    ({ className, children, onScrollEnd = undefined }) => {
         const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
         const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 

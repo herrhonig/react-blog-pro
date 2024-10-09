@@ -1,18 +1,21 @@
 import { useEffect } from 'react';
 
 export interface UseInfiniteScrollProps {
-  callback: () => void;
+  callback?: () => void;
   triggerRef: React.MutableRefObject<HTMLElement>; // Trigger element to start intersetion logic
   wrapperRef: React.MutableRefObject<HTMLElement>; // Element with scroll area;
 }
 
 export function useInifiniteScroll({ callback, triggerRef, wrapperRef }: UseInfiniteScrollProps) {
     useEffect(() => {
-        // let observer: IntersectionObserver | null = null;
+        // refs closure:
+        const triggerElement = triggerRef.current;
+        const wrapperElement = wrapperRef.current;
+
         if (!callback) return undefined;
-        // if (callback) {
+
         const options = {
-            root: wrapperRef.current, // root element with scroll area
+            root: wrapperElement, // root element with scroll area
             rootMargin: '0px',
             threshold: 1.0,
         };
@@ -24,14 +27,13 @@ export function useInifiniteScroll({ callback, triggerRef, wrapperRef }: UseInfi
             }
         }, options);
 
-        observer.observe(triggerRef.current);
+        observer.observe(triggerElement);
 
         return () => {
-            if (observer) {
+            if (observer && triggerElement) {
                 // eslint-disable-next-line react-hooks/exhaustive-deps
-                observer.unobserve(triggerRef.current);
+                observer.unobserve(triggerElement);
             }
-            // };
         };
     }, [triggerRef, wrapperRef, callback]);
 }
