@@ -9,21 +9,21 @@ import {
     ArticleViewSwitcher,
 } from 'entities/Article';
 import { classNames } from 'shared/lib/classNames';
+import { Page } from 'shared/ui/Page';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import {
     DynamicModuleLoader,
     ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Page } from 'shared/ui/Page';
-import { Text, TextSize } from 'shared/ui/Text/Text';
+} from 'shared/lib/components/DynamicModuleLoader';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/services/fetchNextArticlesPage';
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage';
+import { fetchInitialArticlesPage } from '../../model/services/fetchInitialArticlesPage';
 import {
     getArticlesPageError,
     getArticlesPageIsLoading,
     getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
-import { fetchArticlesList } from '../../model/services/fetchArticlesList';
 import {
     articlesPageActions,
     articlesPageReducer,
@@ -165,14 +165,11 @@ const ArticlesPage: React.FC<Props> = ({ className }) => {
     // });
 
     useEffect(() => {
-        dispatch(articlesPageActions.initState());
-        dispatch(fetchArticlesList({ page: 1 }));
-    }, [view, dispatch]);
+        dispatch(fetchInitialArticlesPage());
+    }, [dispatch]);
 
     if (error) {
-        return (
-            <Text text={error} />
-        );
+        return <Text text={error} />;
     }
 
     return (

@@ -34,9 +34,7 @@ const GetArticleDetailsCommentList: React.FC<GetArticleDetailsCommentListProps> 
     articleId,
 }) => {
     const dispatch = useAppDispatch();
-
     const comments = useSelector(getArticleDetailsCommentsSelector.selectAll);
-
     const isLoading = useSelector(getArticleDetailsCommentsIsLoading);
 
     useInitialEffect(() => {

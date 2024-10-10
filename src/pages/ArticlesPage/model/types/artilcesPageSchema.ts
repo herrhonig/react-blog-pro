@@ -10,4 +10,5 @@ export interface ArtilcesPageSchema extends EntityState<Article> {
   limit?: number;
   hasMore: boolean;
   // end region
+  inited: boolean;
 }

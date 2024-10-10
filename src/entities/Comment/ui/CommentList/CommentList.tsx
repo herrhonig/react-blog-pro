@@ -40,7 +40,7 @@ const CommentList: React.FC<CommentListProps> = memo(({
                 ? comments?.map((comment) => (
                     <CommentCard
                         className={cls.comment}
-                        key={comment?.id}
+                        key={comment.id}
                         comment={comment}
                         isLoading={isLoading}
                     />
