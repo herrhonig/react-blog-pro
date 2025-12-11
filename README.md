@@ -9,7 +9,7 @@
 
 <div>
   <p> 
-    <b>ENG:</b> Pet-project dedicated to a modern frontend architecture:
+    <b>ENG:</b> React app dedicated to a modern frontend architecture:
       <a href="https://feature-sliced.design/">
       FSD (Feature-Sliced Design)
     </a>
