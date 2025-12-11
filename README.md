@@ -1,6 +1,6 @@
 <h1 align="center">React-Blog-Pro</h1>
 <p>
-  Pet-project, посвященный созданию приложения на архитектуре
+  Проект, посвященный созданию приложения на архитектуре
   <a href="https://feature-sliced.design/">
     FSD (Feature-Sliced Design)
   </a>
